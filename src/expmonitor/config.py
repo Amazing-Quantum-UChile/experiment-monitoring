@@ -36,13 +36,13 @@ from expmonitor.classes.dummy import (
 )
 
 ## dummy sensors:
-tc1 = DummyStableTemperature("ExperimentRoom", mean_temp=22, std_temp=0.2)
+tc1 = DummyStableTemperature("TempOptics", mean_temp=22, std_temp=0.2)
 tc2 = DummySlowlyVaryingTemperature(
-    "Optic1", mean_temp=22, std_temp=0.1, drift_time_day=3, deviation_temp=0.4
+    "TempDoor", mean_temp=22, std_temp=0.1, drift_time_day=3, deviation_temp=0.4
 )
-tc3 = DummyVaryingTemperature("CellRb", mean_temp=105, std_temp=1, degree_diff=30)
+tc3 = DummyVaryingTemperature("TempCellRb", mean_temp=105, std_temp=1, degree_diff=30)
 tc4 = DummyHumidity("Humidity")
-tc5 = DummyStableTemperature("Optic2", mean_temp=21.3, std_temp=0.3)
+tc5 = DummyStableTemperature("TempComputer", mean_temp=21.3, std_temp=0.3)
 tc6 = DummyStableTemperature(
     "AC", mean_temp=18, std_temp=0.3, drift_time_day=1 / 24 / 4, deviation_temp=2
 )
