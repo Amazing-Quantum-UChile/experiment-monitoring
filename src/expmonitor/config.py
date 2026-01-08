@@ -43,7 +43,7 @@ tc2 = DummySlowlyVaryingTemperature(
 tc3 = DummyVaryingTemperature("TempCellRb", mean_temp=105, std_temp=1, degree_diff=30)
 tc4 = DummyHumidity("Humidity")
 tc5 = DummyStableTemperature("TempComputer", mean_temp=21.3, std_temp=0.3)
-tc6 = DummyStableTemperature(
+tc6 = DummySlowlyVaryingTemperature(
     "AC", mean_temp=18, std_temp=0.3, drift_time_day=1 / 24 / 4, deviation_temp=2
 )
 
