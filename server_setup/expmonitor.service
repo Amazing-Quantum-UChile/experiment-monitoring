@@ -4,10 +4,8 @@ After=multi-user.target
 
 
 [Service]
-User=admin
-Type=simple
-Environment=PYTHONPATH=/mnt/code/experiment-monitoring/src
-ExecStart=/usr/bin/python3 /mnt/code/experiment-monitoring/src/expmonitor/exec.py
+Environment=PYTHONPATH=/root/experiment-monitoring/src
+ExecStart=/usr/bin/python3 /root/experiment-monitoring/src/expmonitor/exec.py
 Restart=always
 RestartSec=15s   
 
