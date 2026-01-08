@@ -15,6 +15,7 @@ class.
 from abc import ABC, abstractmethod
 from influxdb import InfluxDBClient
 import traceback
+import numpy as np
 
 # Local imports
 from expmonitor.utilities.database import Database
@@ -23,11 +24,19 @@ from expmonitor.utilities.utility import get_subclass_objects
 
 
 class Sensor(ABC):
+    """---------- INIT ----------"""
 
-    """ ---------- INIT ---------- """
-
-    def __init__(self, type, descr, unit, conversion_fctn, num_prec=None,
-                 save_raw=False, format_str='f'):
+    def __init__(
+        self,
+        type,
+        descr,
+        unit,
+        conversion_fctn,
+        num_prec=None,
+        save_raw=False,
+        format_str="f",
+        value_limit=(-np.inf, np.inf),
+    ):
         self.type = type  # str
         self.descr = descr  # str
         self.unit = unit  # str
@@ -35,6 +44,8 @@ class Sensor(ABC):
         self.num_prec = num_prec  # Set numerical precision
         self.save_raw = save_raw  # bool
         self.format_str = format_str  # 'f': float, 'i': int, 's': str
+        self.value_limit = value_limit
+        self.measurement_in_range = True
         # Spike filter setup:
         self.spike_filter = SpikeFilter(self, spike_threshold_perc=None)
         # Database setup:
@@ -63,11 +74,11 @@ class Sensor(ABC):
 
     @format_str.setter
     def format_str(self, format_str):
-        self._format_dict = {'f': float, 'i': round, 's': str}
+        self._format_dict = {"f": float, "i": round, "s": str}
         if format_str in self._format_dict.keys():
             self._format_str = format_str
         else:
-            self._format_str = 'f'
+            self._format_str = "f"
 
     @property
     def save_raw(self):
@@ -103,17 +114,18 @@ class Sensor(ABC):
         """Print last measurement with description and units."""
         try:
             if show_raw:
-                print(self.descr, self.measurement, self.unit, ';\t raw:',
-                      self.raw_vals)
+                print(
+                    self.descr, self.measurement, self.unit, ";\t raw:", self.raw_vals
+                )
             else:
                 print(self.descr, self.measurement, self.unit)
         except AttributeError as ae:
-            print(self.descr, '_show AttributeError:', ae.args[0])
+            print(self.descr, "_show AttributeError:", ae.args[0])
 
     def _apply_num_prec(self, value):
         """Apply numerical precision to value."""
         try:
-            return float('{:.{}f}'.format(float(value), self._num_prec))
+            return float("{:.{}f}".format(float(value), self._num_prec))
         except (ValueError, TypeError):
             return value
 
@@ -138,6 +150,17 @@ class Sensor(ABC):
         self.connect()
         self.raw_vals = self.rcv_vals()
         self.measurement = self._convert(self.raw_vals)
+        # Check if measurement in range allowed
+        try:
+            if (self.measurement > min(self.value_limit)) and (
+                self.measurement < max(self.value_limit)
+            ):
+                self.measurement_in_range = True
+            else:
+                self.measurement_in_range = False
+        except Exception as e:
+            print(e)
+            self.measurement_in_range = True
         # Account for numerical precision and format:
         self.measurement = self._apply_num_prec(self.measurement)
         self.measurement = self._apply_format(self.measurement)
@@ -147,11 +170,19 @@ class Sensor(ABC):
 
     def to_db(self):
         """Write measurement result to database."""
-        if self._save_raw:
-            self._db.write(self.descr, self.unit, self.measurement,
-                           self.save_raw, self.raw)
+        if self.measurement_in_range:
+            if self._save_raw:
+                self._db.write(
+                    self.descr, self.unit, self.measurement, self.save_raw, self.raw
+                )
+            else:
+                self._db.write(self.descr, self.unit, self.measurement)
         else:
-            self._db.write(self.descr, self.unit, self.measurement)
+            print(
+                "Measurement ({})outside the range {}. Not saved into database.".format(
+                    self.measurement, self.value_limit
+                )
+            )
 
     def filter_spikes(self):
         if self.spike_filter.enabled:
