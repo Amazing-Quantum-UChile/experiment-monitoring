@@ -24,38 +24,42 @@ acq_interv = 3
 
 
 # Import all specific sensor classes:
-# from expmonitor.classes.phidget_tc import PhidgetTC
+from expmonitor.classes.phidget_tc import PhidgetTC
+
 # from expmonitor.classes.tpg261 import TPG261
 # from expmonitor.classes.tpg300 import TPG300
 # from expmonitor.classes.ups.eaton_ups import EatonUPS
-from expmonitor.classes.dummy import (
-    DummyStableTemperature,
-    DummySlowlyVaryingTemperature,
-    DummyVaryingTemperature,
-    DummyHumidity,
-)
+# from expmonitor.classes.dummy import (
+#     DummyStableTemperature,
+#     DummySlowlyVaryingTemperature,
+#     DummyVaryingTemperature,
+#     DummyHumidity,
+# )
 
 ## dummy sensors:
-tc1 = DummyStableTemperature("TempOptics", mean_temp=22, std_temp=0.2)
-tc2 = DummySlowlyVaryingTemperature(
-    "TempDoor", mean_temp=22, std_temp=0.1, drift_time_day=3, deviation_temp=0.4
-)
-tc3 = DummyVaryingTemperature("TempCellRb", mean_temp=105, std_temp=1, degree_diff=30)
-tc4 = DummyHumidity("Humidity")
-tc5 = DummyStableTemperature("TempComputer", mean_temp=21.3, std_temp=0.3)
-tc6 = DummySlowlyVaryingTemperature(
-    "AC", mean_temp=18, std_temp=0.3, drift_time_day=1 / 24 / 4, deviation_temp=2
-)
+# tc1 = DummyStableTemperature("TempOptics", mean_temp=22, std_temp=0.2)
+# tc2 = DummySlowlyVaryingTemperature(
+#     "TempDoor", mean_temp=22, std_temp=0.1, drift_time_day=3, deviation_temp=0.4
+# )
+# tc3 = DummyVaryingTemperature("TempCellRb", mean_temp=105, std_temp=1, degree_diff=30)
+# tc4 = DummyHumidity("Humidity")
+# tc5 = DummyStableTemperature("TempComputer", mean_temp=21.3, std_temp=0.3)
+# tc6 = DummySlowlyVaryingTemperature(
+#     "AC", mean_temp=18, std_temp=0.3, drift_time_day=1 / 24 / 4, deviation_temp=2
+# )
 
 
 # # Setup Phidgets:
-# tc1 = PhidgetTC('Source', 4, 0)
-# tc2 = PhidgetTC('A/C', 4, 1)
-# tc3 = PhidgetTC('Lab', 4, 2)
-# tc4 = PhidgetTC('Water', 4, 3)
-# tc5 = PhidgetTC('Science Chamber', 5, 0)
-# tc6 = PhidgetTC('Fiber Rail', 5, 1)
-# tc5.num_prec = 2
+tc0 = PhidgetTC(
+    descr="temp_k_table_rb_vapor", hub_serial=622701, hub_port=0, hub_channel=0
+)
+tc1 = PhidgetTC(
+    descr="temp_k_table_locking", hub_serial=622701, hub_port=0, hub_channel=1
+)
+tc2 = PhidgetTC(
+    descr="temp_k_table_laser", hub_serial=622701, hub_port=0, hub_channel=2
+)
+tc4 = PhidgetTC(descr="temp_k_phidget", hub_serial=622701, hub_port=0, hub_channel=4)
 
 # # Setup serial devices:
 # primary_vac = TPG261('Primary Pump', '/dev/ttyUSB0')

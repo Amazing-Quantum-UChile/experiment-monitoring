@@ -25,7 +25,7 @@ class PhidgetTC(Sensor):
         self.conversion_fctn = lambda t: t  # No conversion needed
         self.descr = descr
         super().__init__(
-            self.type, self.descr, self.unit, self.conversion_fctn, num_prec=1
+            self.type, self.descr, self.unit, self.conversion_fctn, num_prec=2
         )
         # Phidget-specific setup:
         self.hub_serial = hub_serial
