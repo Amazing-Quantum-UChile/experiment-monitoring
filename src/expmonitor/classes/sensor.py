@@ -15,7 +15,6 @@ class.
 from abc import ABC, abstractmethod
 import traceback
 import numpy as np
-import time
 # Local imports
 from expmonitor.utilities.spike_filter import SpikeFilter
 from expmonitor.utilities.utility import get_subclass_objects
@@ -141,9 +140,7 @@ class Sensor(ABC):
     def measure(self, verbose=False, show_raw=False):
         """Execute a measurement."""
         
-        t0=time.time()
         self.connect()
-        t1 = time.time()
         self.raw_vals = self.rcv_vals()
         self.measurement = self._convert(self.raw_vals)
         # Check if measurement in range allowed
@@ -160,12 +157,9 @@ class Sensor(ABC):
         # Account for numerical precision and format:
         self.measurement = self._apply_num_prec(self.measurement, self.num_prec)
         self.measurement = self._apply_format(self.measurement, self.format_str)
-        t2 = time.time()
         if verbose:
             self._show(show_raw)
         self.disconnect()
-        t3 = time.time()
-        print("Sensoring with Phidget took {}, {} , {}".format(t1-t0, t2-t1, t3-t2))
 
     def to_db(self):
         """Write measurement result to database."""

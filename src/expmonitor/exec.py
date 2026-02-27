@@ -35,10 +35,11 @@ from expmonitor.utilities.utility import get_subclass_objects
 
 def data_acquisition(sensors, exception_handler):
     """Execute measure method for all sensors."""
+    t_initial = time.time()
     for sensor in sensors:
         try:
             # Make measurement:
-            tinit=time.time()
+            t0=time.time()
             sensor.measure()
             t1=time.time()
             # Write measurement to database:
@@ -47,12 +48,15 @@ def data_acquisition(sensors, exception_handler):
             # Run spike filter if set:
             sensor.filter_spikes()
             t3=time.time()
-            if show_time:
-                print("The measurement with {} took {} s, ({}, {}, {})".format(sensor.descr, time.time()-tinit, t1-tinit, t2-t1, t3-t2))
+            if time_exec:
+                print("The measurement with {} took {:.0f} ms, ({:.0f}, {:.0f}, {:.0f}) ms".format(sensor.descr, (time.time()-t0)*1000, (t1-t0)*1000, (t2-t1)*1000, (t3-t2)*1000))
         # Log exceptions but continue execution:
         except Exception as e:
             exception_handler.log_exception(sensor, e)
     # Measurement frequency given by acq_interv:
+    if time_exec:
+        print("--"*15)
+        print("Total meaasurement duration: {:.0f}".format(1000*(time.time()-t_initial)))
     time.sleep(acq_interv)
 
 
@@ -84,6 +88,8 @@ def main():
         for iteration in range(iterations):
             tinit=time.time()
             data_acquisition(sensors, exception_handler)
+            if time_exec:
+                print("##"*20)
             print('Iteration', iteration + 1, '/', iterations, ". Took {} s.".format(time.time() - tinit))
     except (IndexError, ValueError):  # Default: Run continously
         while True:

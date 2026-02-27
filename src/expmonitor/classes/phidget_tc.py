@@ -50,8 +50,7 @@ class PhidgetTC(Sensor):
         self.ts_handle.setHubPort(self.hub_port)
         self.ts_handle.setDeviceSerialNumber(self.hub_serial)
         self.ts_handle.setChannel(self.hub_channel)
-        self.ts_handle.openWaitForAttachment(1200)
-        print(self.ts_handle.getAttached())
+        self.ts_handle.openWaitForAttachment(1500)
 
     def connect(self):
         """
