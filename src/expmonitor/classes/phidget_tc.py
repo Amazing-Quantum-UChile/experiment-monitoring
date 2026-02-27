@@ -13,7 +13,7 @@ from Phidget22.Devices import TemperatureSensor
 
 # Local imports:
 from expmonitor.classes.sensor import Sensor
-
+import time
 
 class PhidgetTC(Sensor):
 
