@@ -38,11 +38,14 @@ def data_acquisition(sensors, exception_handler):
     for sensor in sensors:
         try:
             # Make measurement:
+            tinit=time.time()
             sensor.measure()
             # Write measurement to database:
             sensor.to_db()
             # Run spike filter if set:
             sensor.filter_spikes()
+            if show_time:
+                print("The measurement with {} took {} s.".format(sensor.descr, time.time()-tinit))
         # Log exceptions but continue execution:
         except Exception as e:
             exception_handler.log_exception(sensor, e)
@@ -76,7 +79,6 @@ def main():
         sys.argv.remove(sys.argv[0])
         iterations = int(sys.argv[0])
         for iteration in range(iterations):
-            tinit=time.time()
             data_acquisition(sensors, exception_handler)
             print('Iteration', iteration + 1, '/', iterations, ". Took {} s.".format(time.time() - tinit))
     except (IndexError, ValueError):  # Default: Run continously

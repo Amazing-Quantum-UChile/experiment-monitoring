@@ -91,3 +91,5 @@ log_full_tb = False  # Log entire traceback for exceptions, not just one line
 
 # Debugging:
 verbose = True  # Prints exception traceback to stdout
+
+# show time = True
