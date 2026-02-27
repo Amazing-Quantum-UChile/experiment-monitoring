@@ -62,13 +62,7 @@ def data_acquisition(sensors, exception_handler):
 
 def main():
     """Execute data acquisition cycle continously or a given number of times."""
-    # Check for execution time argument on command line:
-    if 't' in sys.argv:
-        time_exec = True
-        start_time = time.time()
-        sys.argv.remove('t')
-    else:
-        time_exec = False
+    
     # Set up exception handler:
     exception_handler = ExceptionHandler()
     exception_handler.overwrite_log_file = overwrite_log_file
@@ -101,5 +95,11 @@ def main():
 
 # Execution:
 if __name__ == '__main__':
-    
+    # Check for execution time argument on command line:
+    if 't' in sys.argv:
+        time_exec = True
+        start_time = time.time()
+        sys.argv.remove('t')
+    else:
+        time_exec = False
     main()
