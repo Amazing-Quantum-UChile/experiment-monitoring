@@ -51,7 +51,7 @@ class PhidgetTC(Sensor):
         self.ts_handle.setDeviceSerialNumber(self.hub_serial)
         self.ts_handle.setChannel(self.hub_channel)
         self.ts_handle.openWaitForAttachment(1200)
-        print(self.ts_handle.getIsAttached())
+        print(self.ts_handle.getAttached())
 
     def connect(self):
         """
@@ -59,7 +59,7 @@ class PhidgetTC(Sensor):
         """
         ## connecting to Phidget takes a long time so we only check if we are connected or not. 
         # Open Phidgets and wait for attachment:
-        if not self.ts_handle.getIsAttached():
+        if not self.ts_handle.getAttached():
             self.ts_handle.openWaitForAttachment(1000)
 
     def disconnect(self):
