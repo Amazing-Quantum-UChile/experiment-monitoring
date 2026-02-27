@@ -15,7 +15,7 @@ class.
 from abc import ABC, abstractmethod
 import traceback
 import numpy as np
-
+import time
 # Local imports
 from expmonitor.utilities.spike_filter import SpikeFilter
 from expmonitor.utilities.utility import get_subclass_objects
