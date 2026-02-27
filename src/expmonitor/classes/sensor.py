@@ -210,7 +210,7 @@ class Sensor(ABC):
                     category=self.category, 
                     sensor_type=self.sensor_type,
                     save_raw =  self.save_raw, 
-                    raw=self.raw
+                    raw=self.raw_vals
                 )
         else:
             print(
