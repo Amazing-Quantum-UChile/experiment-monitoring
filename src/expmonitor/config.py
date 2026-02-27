@@ -31,32 +31,36 @@ database = Database(port=8086, name="amazQdatabase")
 from expmonitor.classes.phidget_tc import PhidgetTC
 
 tc0 = PhidgetTC(
-    database=database,
-    descr="temp_k_table_rb_vapor",
     hub_serial=622701,
     hub_port=0,
     hub_channel=0,
+    database=database,
+    descr="temp_k_table_rb_vapor",
+    location="Optical table, optics near the science Rb Cell",
 )
 tc1 = PhidgetTC(
-    database=database,
-    descr="temp_k_table_locking",
     hub_serial=622701,
     hub_port=0,
     hub_channel=1,
+    database=database,
+    descr="temp_k_table_locking",
+    location="Optical table, optics of the locking.",
 )
 tc2 = PhidgetTC(
-    database=database,
-    descr="temp_k_table_laser",
     hub_serial=622701,
     hub_port=0,
     hub_channel=2,
+    database=database,
+    descr="temp_k_table_laser",
+    location="Optical table, optics near the laser.",
 )
 tc4 = PhidgetTC(
-    database=database,
-    descr="temp_k_phidget",
     hub_serial=622701,
     hub_port=0,
     hub_channel=4,
+    database=database,
+    descr="temp_k_phidget",
+    location="Experiment computer"
 )
 
 
