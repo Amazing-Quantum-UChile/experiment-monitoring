@@ -22,6 +22,11 @@ acq_interv = 3
 # Instanciate the database connection
 database = Database(port=8086, name="amazQdatabase")
 
+
+""" --------- ARDUINO SETUP ---------- """
+
+
+
 """ ---------- SENSOR SETUP ---------- """
 # Import all specific sensor classes:
 

@@ -3,7 +3,7 @@
 """
 Created on Wed Jun 30 12:33:08 2021
 
-@author: jp
+@author: jp, victor
 
 Implements the abstract base class Sensor for experiment monitoring.
 
@@ -13,7 +13,6 @@ class.
 
 # Standard library imports:
 from abc import ABC, abstractmethod
-from influxdb import InfluxDBClient
 import traceback
 import numpy as np
 
@@ -23,6 +22,7 @@ from expmonitor.utilities.utility import get_subclass_objects
 
 
 class Sensor(ABC):
+    _format_dict = {"f": float, "i": round, "s": str}
     """---------- INIT ----------"""
 
     def __init__(
@@ -82,46 +82,6 @@ class Sensor(ABC):
         self.spike_filter = SpikeFilter(self, spike_threshold_perc=None)
         
 
-    """ ---------- PROPERTIES ---------- """
-
-    @property
-    def num_prec(self):
-        """Set numerical precision for measurement values.
-        For example, num_prec = 12 saves 1.2381e-10 as 1.24e-10."""
-        return self._num_prec
-
-    @num_prec.setter
-    def num_prec(self, num_prec):
-        if type(num_prec) == int and num_prec > 0:
-            self._num_prec = num_prec
-        else:
-            self._num_prec = None
-
-    @property
-    def format_str(self):
-        """Set format in which to save measurement data. Currently all data
-        within one influxDB shard needs to be of the same format."""
-        return self._format_str
-
-    @format_str.setter
-    def format_str(self, format_str):
-        self._format_dict = {"f": float, "i": round, "s": str}
-        if format_str in self._format_dict.keys():
-            self._format_str = format_str
-        else:
-            self._format_str = "f"
-
-    @property
-    def save_raw(self):
-        return self._save_raw
-
-    @save_raw.setter
-    def save_raw(self, save_raw):
-        if type(save_raw) == bool:
-            self._save_raw = save_raw
-        else:
-            self._save_raw = False
-
     """ ---------- ABSTRACT METHODS ---------- """
 
     @abstractmethod
@@ -153,18 +113,20 @@ class Sensor(ABC):
         except AttributeError as ae:
             print(self.descr, "_show AttributeError:", ae.args[0])
 
-    def _apply_num_prec(self, value):
+    def _apply_num_prec(self, value, num_prec):
         """Apply numerical precision to value."""
+        if num_prec is None:
+            return value
         try:
-            return float("{:.{}f}".format(float(value), self._num_prec))
+            return float("{:.{}f}".format(float(value),num_prec))
         except (ValueError, TypeError):
             return value
 
-    def _apply_format(self, value):
+    def _apply_format(self, value, format):
         """Apply format to value."""
         try:
-            return self._format_dict[self._format_str](value)
-        except ValueError:
+            return self._format_dict[format](value)
+        except (ValueError, KeyError):
             return value
 
     def _convert(self, value):
@@ -233,3 +195,50 @@ class Sensor(ABC):
         sensor_list = get_subclass_objects(cls)
         for sensor in sensor_list:
             sensor.measure(verbose=True)
+
+class MultiChannelsSensor(Sensor):
+    def __init__(self,
+        database,
+        channel_number,
+        descr,
+        location, 
+        unit,
+        category, 
+        sensor_type,
+        conversion_fctn=None,
+        num_prec=None,
+        save_raw=None,
+        format_str=None,
+        value_limit=None,):
+        """Abstract class for the MultiChannelsSensor method. 
+
+        Parameters
+        ----------
+        database : expmonitor.utilities.database.Database
+            the database object in which data should be stored. All sensors share the same database object. 
+        channel_number: int
+            the number of channels (sensor) of the sensor.
+        descr : list of str os size channel_number
+            the description of the sensor that will be used as the short name in the database. Choose widely, e.g. temp_k_table_locking ; humidity_table_rb_vapor ; current_coil_mot ; voltage_photodiode_lattice.
+        location : list of str os size channel_number
+            where the sensor is located.
+        unit : list of str of size channel_number
+            the unit of the sensor, e.g. °C, %, A, V.
+        category : list of str of size channel_number
+            the category of the measurement i.e. temperature, voltage, current. 
+        sensor_type : list of str of size channel_number
+            the type of sensor e.g. k-type thermocouple.
+        conversion_fctn : list of lambda function os size channel_number, optional
+            the conversion function of the sensor, by default None
+        num_prec : list of floats, optional
+            the precision to register in the database, by default None
+        save_raw : list of bools, optional
+            _description_, by default None
+        format_str : list of str, optional
+            _description_, by default None
+        value_limit : list of tuples, optional
+            the range in which the value should belong to, by default (-np.inf, np.inf)
+        """
+        
+        
+
