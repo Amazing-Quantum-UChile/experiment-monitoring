@@ -155,8 +155,8 @@ class Sensor(ABC):
             print(e)
             self.measurement_in_range = True
         # Account for numerical precision and format:
-        self.measurement = self._apply_num_prec(self.measurement)
-        self.measurement = self._apply_format(self.measurement)
+        self.measurement = self._apply_num_prec(self.measurement, self.num_prec)
+        self.measurement = self._apply_format(self.measurement, self.format_str)
         if verbose:
             self._show(show_raw)
         self.disconnect()
