@@ -239,7 +239,10 @@ class MultiChannelsSensor(Sensor):
             _description_, by default None
         value_limit : list of tuples, optional
             the range in which the value should belong to, by default (-np.inf, np.inf)
+        save_data : list of booleans
+            if we save each sub-sensor data.
         """
+        self.channel_number=channel_number
         if conversion_fctn is None:
             conversion_fctn=[lambda t:t for i in range(channel_number)]
         elif type(conversion_fctn) ==type(lambda t:t):
@@ -260,60 +263,85 @@ class MultiChannelsSensor(Sensor):
             value_limit=[(-np.inf, np.inf) for i in range(channel_number)]
         elif type(value_limit)==tuple:
             value_limit=[value_limit for i in range(channel_number)]
+        elif type(save_data)==bool:
+            save_data=[save_data for i in range(channel_number)]
+        self.save_data=save_data
         ## check everything has the same size
         attributes = {
             "descr": descr, "location": location, "unit": unit, "category": category,
             "sensor_type": sensor_type, "conversion_fctn": conversion_fctn,
             "num_prec": num_prec, "save_raw": save_raw, "format_str": format_str,
-            "value_limit": value_limit
+            "value_limit": value_limit, "save_data":save_data
         }
         for name, value in attributes.items():
             if not isinstance(value, list):
                 raise TypeError(f"'{name}' must be a list (got {type(value).__name__})")
             if len(value) != channel_number:
                 raise ValueError(f"'{name}' list length must be {channel_number} (got {len(value)})")
+            
+        super().__init__(
+            database, 
+            descr=descr,
+            location=location, 
+            unit=unit,
+            category=category, 
+            sensor_type=sensor_type,
+            num_prec=num_prec,
+            save_raw=save_raw,
+            format_str=format_str,
+            value_limit=value_limit,
+        )
+        self.measurement_in_range = [True for i in range(channel_number)] 
+    def _convert(self, value, i):
+        try:
+            fcn = self.conversion_fctn[i]
+            return fcn(value)
+        except (TypeError, ValueError):
+            return None
 
     def measure(self, verbose=False, show_raw=False):
         """Execute a measurement."""
         self.connect()
         self.raw_vals = self.rcv_vals() ## list of values
-        self.measurements=[0 for i in range()]
-        self.measurement = self._convert(self.raw_vals)
-        # Check if measurement in range allowed
-        try:
-            if (self.measurement > min(self.value_limit)) and (
-                self.measurement < max(self.value_limit)
-            ):
-                self.measurement_in_range = True
-            else:
-                self.measurement_in_range = False
-        except Exception as e:
-            print(e)
-            self.measurement_in_range = True
-        # Account for numerical precision and format:
-        self.measurement = self._apply_num_prec(self.measurement, self.num_prec)
-        self.measurement = self._apply_format(self.measurement, self.format_str)
+        self.measurements=self.raw_vals
+        for i in range(channel_number):
+            self.measurement[i] = self._convert(self.raw_vals[i])
+            # Check if measurement in range allowed
+            try:
+                if (self.measurement[i] > min(self.value_limit[i])) and (
+                    self.measurement[i] < max(self.value_limit[i])
+                ):
+                    self.measurement_in_range[i] = True
+                else:
+                    self.measurement_in_range[i] = False
+            except Exception as e:
+                print(e)
+                self.measurement_in_range[i] = True
+            # Account for numerical precision and format:
+            self.measurement[i] = self._apply_num_prec(self.measurement[i], self.num_prec[i])
+            self.measurement[i] = self._apply_format(self.measurement[i], self.format_str[i])
         if verbose:
             self._show(show_raw)
         self.disconnect()
 
     def to_db(self):
         """Write measurement result to database."""
-        if self.measurement_in_range:
-                self._db.write(
-                    descr = self.descr, 
-                    unit = self.unit, 
-                    measurement = self.measurement,
-                    location= self.location ,
-                    category=self.category, 
-                    sensor_type=self.sensor_type,
-                    save_raw =  self.save_raw, 
-                    raw=self.raw_vals
+        for i in range(self.channel_number):
+            if self.measurement_in_range[i] and self.save_data[i]:
+                    self._db.write(
+                        descr = self.descr[i], 
+                        unit = self.unit[i], 
+                        measurement = self.measurement[i],
+                        location= self.location[i] ,
+                        category=self.category[i], 
+                        sensor_type=self.sensor_type[i],
+                        save_raw =  self.save_raw[i], 
+                        raw=self.raw_vals[i]
+                    )
+            else:
+                print(
+                    "Measurement ({})outside the range {}. Not saved into database.".format(
+                        self.measurement[i], self.value_limit[i]
+                    )
                 )
-        else:
-            print(
-                "Measurement ({})outside the range {}. Not saved into database.".format(
-                    self.measurement, self.value_limit
-                )
-            )
 
