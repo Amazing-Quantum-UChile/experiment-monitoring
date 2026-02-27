@@ -48,7 +48,7 @@ def data_acquisition(sensors, exception_handler):
             sensor.filter_spikes()
             t3=time.time()
             if show_time:
-                print("The measurement with {} took {} s, ({}, {}, {})".format(sensor.descr, time.time()-tinit), t1-tinit, t2-t1, t3-t2)
+                print("The measurement with {} took {} s, ({}, {}, {})".format(sensor.descr, time.time()-tinit, t1-tinit, t2-t1, t3-t2))
         # Log exceptions but continue execution:
         except Exception as e:
             exception_handler.log_exception(sensor, e)
