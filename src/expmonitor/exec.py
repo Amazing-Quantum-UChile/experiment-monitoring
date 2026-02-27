@@ -76,8 +76,9 @@ def main():
         sys.argv.remove(sys.argv[0])
         iterations = int(sys.argv[0])
         for iteration in range(iterations):
-            print('Iteration', iteration + 1, '/', iterations)
+            tinit=time.time()
             data_acquisition(sensors, exception_handler)
+            print('Iteration', iteration + 1, '/', iterations, ". Took {} s.".format(time.time() - tinit))
     except (IndexError, ValueError):  # Default: Run continously
         while True:
             data_acquisition(sensors, exception_handler)
