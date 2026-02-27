@@ -17,16 +17,30 @@ from expmonitor.classes.sensor import Sensor
 
 class PhidgetTC(Sensor):
 
-    def __init__(self, descr, hub_serial, hub_port, hub_channel):
+    def __init__(self, 
+                 hub_serial, 
+                 hub_port, 
+                 hub_channel, 
+                 database,
+                 descr, 
+                 location, 
+                 unit = "°C",
+                 category="temperature", 
+                 sensor_type="Type K",
+                 num_prec=2,
+                 **kwargs):
         # General sensor setup:
-        self.type = "Thermocouple"
-        self.descr = descr.replace(" ", "_").lower()  # Multi-word
-        self.unit = "°C"
-        self.conversion_fctn = lambda t: t  # No conversion needed
-        self.descr = descr
+        descr = descr.replace(" ", "_").lower() 
         super().__init__(
-            self.type, self.descr, self.unit, self.conversion_fctn, num_prec=2
-        )
+            database, 
+            descr=descr,
+            location=location, 
+            unit=unit,
+            category=category, 
+            sensor_type=sensor_type,
+            num_prec=num_prec,
+            **kwargs
+        )        
         # Phidget-specific setup:
         self.hub_serial = hub_serial
         self.hub_port = hub_port

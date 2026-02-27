@@ -18,7 +18,6 @@ import traceback
 import numpy as np
 
 # Local imports
-from expmonitor.utilities.database import Database
 from expmonitor.utilities.spike_filter import SpikeFilter
 from expmonitor.utilities.utility import get_subclass_objects
 
@@ -28,18 +27,51 @@ class Sensor(ABC):
 
     def __init__(
         self,
-        type,
+        database,
         descr,
+        location, 
         unit,
-        conversion_fctn,
+        category, 
+        sensor_type,
+        conversion_fctn=lambda t: t,
         num_prec=None,
         save_raw=False,
         format_str="f",
         value_limit=(-np.inf, np.inf),
     ):
-        self.type = type  # str
+        """Abstract class for the Sensor method. 
+
+        Parameters
+        ----------
+        database : expmonitor.utilities.database.Database
+            the database object in which data should be stored. All sensors share the same database object. 
+        descr : str
+            the description of the sensor that will be used as the short name in the database. Choose widely, e.g. temp_k_table_locking ; humidity_table_rb_vapor ; current_coil_mot ; voltage_photodiode_lattice.
+        location : str
+            where the sensor is located.
+        unit : str
+            the unit of the sensor, e.g. °C, %, A, V.
+        category : str
+            the category of the measurement i.e. temperature, voltage, current. 
+        sensor_type : str
+            the type of sensor e.g. k-type thermocouple.
+        conversion_fctn : lambda function, optional
+            the conversion function of the sensor, by default lambdat:t
+        num_prec : float, optional
+            the precision to register in the database, by default None
+        save_raw : bool, optional
+            _description_, by default False
+        format_str : str, optional
+            _description_, by default "f"
+        value_limit : tuple, optional
+            the range in which the value should belong to, by default (-np.inf, np.inf)
+        """
+        self._db = database
         self.descr = descr  # str
+        self.location=location # str
         self.unit = unit  # str
+        self.category = category # str
+        self.sensor_type = sensor_type # str
         self.conversion_fctn = conversion_fctn  # function_object
         self.num_prec = num_prec  # Set numerical precision
         self.save_raw = save_raw  # bool
@@ -48,8 +80,7 @@ class Sensor(ABC):
         self.measurement_in_range = True
         # Spike filter setup:
         self.spike_filter = SpikeFilter(self, spike_threshold_perc=None)
-        # Database setup:
-        self._db = Database()
+        
 
     """ ---------- PROPERTIES ---------- """
 
@@ -171,12 +202,16 @@ class Sensor(ABC):
     def to_db(self):
         """Write measurement result to database."""
         if self.measurement_in_range:
-            if self._save_raw:
                 self._db.write(
-                    self.descr, self.unit, self.measurement, self.save_raw, self.raw
+                    descr = self.descr, 
+                    unit = self.unit, 
+                    measurement = self.measurement,
+                    location= self.location ,
+                    category=self.category, 
+                    sensor_type=self.sensor_type,
+                    save_raw =  self.save_raw, 
+                    raw=self.raw
                 )
-            else:
-                self._db.write(self.descr, self.unit, self.measurement)
         else:
             print(
                 "Measurement ({})outside the range {}. Not saved into database.".format(

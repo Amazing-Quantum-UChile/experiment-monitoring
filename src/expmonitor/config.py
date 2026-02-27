@@ -15,51 +15,50 @@ or feel free to add any new hardware interface you want to connect.
 
 """ ---------- GENERAL SETUP ---------- """
 
+from expmonitor.utilities.database import Database
 
 # Define interval [s] for data acquisition (+ execution time):
 acq_interv = 3
-
+# Instanciate the database connection
+database = Database(port=8086, name="amazQdatabase")
 
 """ ---------- SENSOR SETUP ---------- """
-
-
 # Import all specific sensor classes:
+
+###############################
+# # Setup Temperature Phidgets:
+###############################
 from expmonitor.classes.phidget_tc import PhidgetTC
 
-# from expmonitor.classes.tpg261 import TPG261
-# from expmonitor.classes.tpg300 import TPG300
-# from expmonitor.classes.ups.eaton_ups import EatonUPS
-# from expmonitor.classes.dummy import (
-#     DummyStableTemperature,
-#     DummySlowlyVaryingTemperature,
-#     DummyVaryingTemperature,
-#     DummyHumidity,
-# )
-
-## dummy sensors:
-# tc1 = DummyStableTemperature("TempOptics", mean_temp=22, std_temp=0.2)
-# tc2 = DummySlowlyVaryingTemperature(
-#     "TempDoor", mean_temp=22, std_temp=0.1, drift_time_day=3, deviation_temp=0.4
-# )
-# tc3 = DummyVaryingTemperature("TempCellRb", mean_temp=105, std_temp=1, degree_diff=30)
-# tc4 = DummyHumidity("Humidity")
-# tc5 = DummyStableTemperature("TempComputer", mean_temp=21.3, std_temp=0.3)
-# tc6 = DummySlowlyVaryingTemperature(
-#     "AC", mean_temp=18, std_temp=0.3, drift_time_day=1 / 24 / 4, deviation_temp=2
-# )
-
-
-# # Setup Phidgets:
 tc0 = PhidgetTC(
-    descr="temp_k_table_rb_vapor", hub_serial=622701, hub_port=0, hub_channel=0
+    database=database,
+    descr="temp_k_table_rb_vapor",
+    hub_serial=622701,
+    hub_port=0,
+    hub_channel=0,
 )
 tc1 = PhidgetTC(
-    descr="temp_k_table_locking", hub_serial=622701, hub_port=0, hub_channel=1
+    database=database,
+    descr="temp_k_table_locking",
+    hub_serial=622701,
+    hub_port=0,
+    hub_channel=1,
 )
 tc2 = PhidgetTC(
-    descr="temp_k_table_laser", hub_serial=622701, hub_port=0, hub_channel=2
+    database=database,
+    descr="temp_k_table_laser",
+    hub_serial=622701,
+    hub_port=0,
+    hub_channel=2,
 )
-tc4 = PhidgetTC(descr="temp_k_phidget", hub_serial=622701, hub_port=0, hub_channel=4)
+tc4 = PhidgetTC(
+    database=database,
+    descr="temp_k_phidget",
+    hub_serial=622701,
+    hub_port=0,
+    hub_channel=4,
+)
+
 
 # # Setup serial devices:
 # primary_vac = TPG261('Primary Pump', '/dev/ttyUSB0')
