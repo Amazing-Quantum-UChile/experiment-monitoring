@@ -56,8 +56,9 @@ def data_acquisition(sensors, exception_handler):
     # Measurement frequency given by acq_interv:
     if time_exec:
         print("--"*15)
-        print("Total meaasurement duration: {:.0f}".format(1000*(time.time()-t_initial)))
+        print("Total measurement duration: {:.0f} ms.".format(1000*(time.time()-t_initial)))
     time.sleep(acq_interv)
+
 
 
 def main():

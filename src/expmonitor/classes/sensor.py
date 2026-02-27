@@ -209,7 +209,8 @@ class MultiChannelsSensor(Sensor):
         num_prec=None,
         save_raw=None,
         format_str=None,
-        value_limit=None,):
+        value_limit=None,
+        save_data=True):
         """Abstract class for the MultiChannelsSensor method. 
 
         Parameters
@@ -239,6 +240,80 @@ class MultiChannelsSensor(Sensor):
         value_limit : list of tuples, optional
             the range in which the value should belong to, by default (-np.inf, np.inf)
         """
-        
-        
+        if conversion_fctn is None:
+            conversion_fctn=[lambda t:t for i in range(channel_number)]
+        elif type(conversion_fctn) ==type(lambda t:t):
+            conversion_fctn=[conversion_fctn for i in range(channel_number)]
+        if num_prec is None:
+            num_prec=[None for i in range(channel_number)]
+        elif isinstance(num_prec, (int, float)):
+            num_prec=[num_prec for i in range(channel_number)]
+        if save_raw is None:
+            save_raw=[False for i in range(channel_number)]
+        elif type(save_raw)==bool:
+            save_raw=[save_raw for i in range(channel_number)]
+        if format_str is None:
+            format_str=["f" for i in range(channel_number)]
+        elif type(format_str)==str:
+            format_str=[format_str for i in range(channel_number)]
+        if value_limit is None:
+            value_limit=[(-np.inf, np.inf) for i in range(channel_number)]
+        elif type(value_limit)==tuple:
+            value_limit=[value_limit for i in range(channel_number)]
+        ## check everything has the same size
+        attributes = {
+            "descr": descr, "location": location, "unit": unit, "category": category,
+            "sensor_type": sensor_type, "conversion_fctn": conversion_fctn,
+            "num_prec": num_prec, "save_raw": save_raw, "format_str": format_str,
+            "value_limit": value_limit
+        }
+        for name, value in attributes.items():
+            if not isinstance(value, list):
+                raise TypeError(f"'{name}' must be a list (got {type(value).__name__})")
+            if len(value) != channel_number:
+                raise ValueError(f"'{name}' list length must be {channel_number} (got {len(value)})")
+
+    def measure(self, verbose=False, show_raw=False):
+        """Execute a measurement."""
+        self.connect()
+        self.raw_vals = self.rcv_vals() ## list of values
+        self.measurements=[0 for i in range()]
+        self.measurement = self._convert(self.raw_vals)
+        # Check if measurement in range allowed
+        try:
+            if (self.measurement > min(self.value_limit)) and (
+                self.measurement < max(self.value_limit)
+            ):
+                self.measurement_in_range = True
+            else:
+                self.measurement_in_range = False
+        except Exception as e:
+            print(e)
+            self.measurement_in_range = True
+        # Account for numerical precision and format:
+        self.measurement = self._apply_num_prec(self.measurement, self.num_prec)
+        self.measurement = self._apply_format(self.measurement, self.format_str)
+        if verbose:
+            self._show(show_raw)
+        self.disconnect()
+
+    def to_db(self):
+        """Write measurement result to database."""
+        if self.measurement_in_range:
+                self._db.write(
+                    descr = self.descr, 
+                    unit = self.unit, 
+                    measurement = self.measurement,
+                    location= self.location ,
+                    category=self.category, 
+                    sensor_type=self.sensor_type,
+                    save_raw =  self.save_raw, 
+                    raw=self.raw_vals
+                )
+        else:
+            print(
+                "Measurement ({})outside the range {}. Not saved into database.".format(
+                    self.measurement, self.value_limit
+                )
+            )
 
