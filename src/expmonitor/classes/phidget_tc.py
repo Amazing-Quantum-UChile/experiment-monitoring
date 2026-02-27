@@ -50,14 +50,22 @@ class PhidgetTC(Sensor):
         self.ts_handle.setHubPort(self.hub_port)
         self.ts_handle.setDeviceSerialNumber(self.hub_serial)
         self.ts_handle.setChannel(self.hub_channel)
+        self.ts_handle.openWaitForAttachment(1200)
+        print(self.ts_handle.getIsAttached())
 
     def connect(self):
+        """
+        Establishes a connection to the Phidget device if not already attached. The phidget takes almost 1s to connect so we only check if it is connected or not. 
+        """
+        ## connecting to Phidget takes a long time so we only check if we are connected or not. 
         # Open Phidgets and wait for attachment:
-        self.ts_handle.openWaitForAttachment(1000)
+        if not self.ts_handle.getIsAttached():
+            self.ts_handle.openWaitForAttachment(1000)
 
     def disconnect(self):
-        # Close Phidgets:
-        self.ts_handle.close()
+        pass
+        # we do not close Phidgets because it is too long to open
+        #self.ts_handle.close()
 
     def rcv_vals(self):
         # Receive temperature value:
