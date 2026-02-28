@@ -22,11 +22,11 @@ class PhidgetTC(Sensor):
                  hub_port, 
                  hub_channel, 
                  database,
-                 descr, 
-                 location, 
+                 descr="temp_k_somewhere", 
+                 location="Somewhere in the lab", 
                  unit = "°C",
                  category="temperature", 
-                 sensor_type="Type K",
+                 sensor_type="Type K thermocouple",
                  num_prec=2,
                  **kwargs):
         # General sensor setup:
@@ -50,6 +50,7 @@ class PhidgetTC(Sensor):
         self.ts_handle.setHubPort(self.hub_port)
         self.ts_handle.setDeviceSerialNumber(self.hub_serial)
         self.ts_handle.setChannel(self.hub_channel)
+        ## open the channel
         self.ts_handle.openWaitForAttachment(1500)
 
     def connect(self):
