@@ -29,8 +29,6 @@ class PhidgetTC(Sensor):
                  sensor_type="Type K",
                  num_prec=2,
                  **kwargs):
-        # General sensor setup:
-        descr = descr.replace(" ", "_").lower() 
         super().__init__(
             database, 
             descr=descr,
