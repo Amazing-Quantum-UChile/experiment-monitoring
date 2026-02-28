@@ -17,8 +17,8 @@ import traceback
 import numpy as np
 
 # Local imports
-# from expmonitor.utilities.spike_filter import SpikeFilter
-# from expmonitor.utilities.utility import get_subclass_objects
+from expmonitor.utilities.spike_filter import SpikeFilter
+from expmonitor.utilities.utility import get_subclass_objects
 
 
 
@@ -227,15 +227,15 @@ class AbstractSensor(ABC):
             if self.spike_filter.was_spike():
                 self.spike_filter.del_spike()
 
-    # @classmethod
-    # def _test_execution(cls):
-    #     """Execute measure method for all sensors of this class defined in
-    #     config file and print result to stdout. Has to be preceeded by the
-    #     following import line:
-    #     'from exp_monitor.config import *'."""
-    #     sensor_list = get_subclass_objects(cls)
-    #     for sensor in sensor_list:
-    #         sensor.measure(verbose=True)
+    @classmethod
+    def _test_execution(cls):
+        """Execute measure method for all sensors of this class defined in
+        config file and print result to stdout. Has to be preceeded by the
+        following import line:
+        'from exp_monitor.config import *'."""
+        sensor_list = get_subclass_objects(cls)
+        for sensor in sensor_list:
+            sensor.measure(verbose=True)
 
 class Sensor(AbstractSensor):
     def __init__(self,database,  **kwargs):
