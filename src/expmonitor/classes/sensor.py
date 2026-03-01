@@ -38,6 +38,7 @@ class AbstractSensor(ABC):
         format_str="f",
         value_limit=(-np.inf, np.inf),
         save_to_database=True,
+        is_dummy=False
     ):
         """Abstract class for the Sensor method.
 
@@ -67,6 +68,8 @@ class AbstractSensor(ABC):
             the range in which the value should belong to, by default (-np.inf, np.inf)
         save_to_database : bool, optional,
             if we send the measurement to the database. This is particularly useful when a sensor has many inputs (e.g. the ADC of the arduino) but not all inputs are effectively connected.
+        is_dummy : bool, optional
+            if True, we do not connect to the hardware.
         """
         self._db = database
         self.descr = descr.replace(" ", "_").lower()  # str
@@ -81,6 +84,7 @@ class AbstractSensor(ABC):
         self.value_limit = value_limit
         self.measurement_in_range = True
         self.save_to_database = save_to_database
+        self.is_dummy=is_dummy
         # Spike filter setup:
         # self.spike_filter = SpikeFilter(self, spike_threshold_perc=None)
 
@@ -166,7 +170,7 @@ class AbstractSensor(ABC):
         """Apply format to value."""
         try:
             return self._format_dict[self._format_str](value)
-        except ValueError, TypeError:
+        except (ValueError, TypeError):
             return value
 
     def _convert(self, value):
@@ -327,7 +331,7 @@ class MultiSensor(Sensor):
             the category of the sensor i.e. temperature, voltage, current.
         """
         super().__init__(database, descr=descr, unit=unit, category=category, **kwargs)
-        # self._db = database
+        self._db = database
         self.number_of_sensors = number_of_sensors
         self.setup_subsensors()
         self.update_subsensors(sensor_parameters)
@@ -358,7 +362,7 @@ class MultiSensor(Sensor):
     def setup_subsensors(self):
         """instanciate self.subsensors the lists of AbstractSensor contained by the MultiSensor object with Default sensors."""
         self.subsensors = [
-            SubSensor(database, **self.default_subsensor(i))
+            SubSensor(self._db, **self.default_subsensor(i))
             for i in range(self.number_of_sensors)
         ]
 
@@ -449,75 +453,22 @@ class MultiSensor(Sensor):
             subsensor.filter_spikes()
 
 
-if __name__ == "__main__":
 
-    class DatabaseDummy:
-        def __init__(self):
-            pass
+class DummyMultiSensor(MultiSensor):
+    """class that we use just to test the base calss MultiSensor."""
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
 
-        def write(
-            self,
-            descr,
-            unit,
-            measurement,
-            location,
-            category,
-            sensor_type,
-            save_raw=False,
-            raw=None,
-        ):
-            print(
-                "Saving the following data to the database",
-                descr,
-                measurement,
-                unit,
-                location,
-                category,
-                sensor_type,
-            )
+    def connect(self):
+        """Open the connection to the sensor."""
+        pass
 
-    database = DatabaseDummy()
+    def disconnect(self):
+        """Close the connection to the sensor."""
+        pass
 
-    if False:  # check the SubSensor class
-        subsensor = SubSensor(database, descr="My amazing sensor")
-        print(subsensor.descr, " is ", subsensor.location)
-        subsensor.set_vals(3.1415)
-        subsensor._measure(verbose=True)
-        subsensor._to_db()
-    if True:  # check the MultiSensor class
+    def rcv_vals(self):
+        """Receive and return measurement values from sensor."""
+        return np.random.rand(self.number_of_sensors)
 
-        class DummyMultiSensor(MultiSensor):
-            def __init__(self, *args, **kwargs):
-                super().__init__(*args, **kwargs)
 
-            def connect(self):
-                """Open the connection to the sensor."""
-                pass
-
-            def disconnect(self):
-                """Close the connection to the sensor."""
-                pass
-
-            def rcv_vals(self):
-                """Receive and return measurement values from sensor."""
-                return np.random.rand(self.number_of_sensors)
-
-        subsensors_parameters = [
-            {
-                "sensor_number": 1,
-                "descr": "temp_k_door",
-                "unit": "°C",
-                "category": "temperature",
-                "sensor_type": "type K thermocouple",
-                "save_to_database": True,
-            }
-        ]
-        multisensor = DummyMultiSensor(
-            database,
-            number_of_sensors=3,
-            sensor_parameters=subsensors_parameters,
-            descr="My amazing Multi-sensor",
-        )
-        print(multisensor.descr, " is ", multisensor.location)
-        multisensor.measure(verbose=True)
-        multisensor.to_db()

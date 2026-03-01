@@ -1,17 +1,24 @@
 # Experiment Monitoring Server Setup
+This file contains the original server setup explanation. It was made for a team working in IOGS (Paris-Saclay University).
 
 # Table of Contents
-  * [Recommended Hardware](#recommended-hardware)
-  * [Preparing the RaspberryPi](#preparing-the-raspberrypi)
-  * [Configuring the RaspberryPi](#configuring-the-raspberrypi)
-  * [Access from outside the IOGS network](#access-from-outside-the-iogs-network)
-  * [Adding external storage devices](#adding-external-storage-devices)
-  * [Installing InfluxDB and Grafana](#installing-influxdb-and-grafana)
-  * [Setting up the continuous data acquisition](#setting-up-the-continuous-data-acquisition)
-  * [Setting up automatic backups](#setting-up-automatic-backups)
-  * [Setting up the data monitoring](#setting-up-the-data-monitoring)
-  * [Setting up automatic alerts](#setting-up-automatic-alerts)
-  * [Known bugs and problems](#known-bugs-and-problems)
+- [Experiment Monitoring Server Setup](#experiment-monitoring-server-setup)
+- [Table of Contents](#table-of-contents)
+  - [Recommended Hardware](#recommended-hardware)
+    - [Server](#server)
+    - [Temperature Sensing (opt.)](#temperature-sensing-opt)
+    - [Analog Sensing (opt.)](#analog-sensing-opt)
+    - [Eaton 5PX UPS Integration (opt.)](#eaton-5px-ups-integration-opt)
+      - [The instructions below are given for a Linux command line. SSH will generally work from the command prompt on Windows 10 and newer. Replace text in *italitcs*.](#the-instructions-below-are-given-for-a-linux-command-line-ssh-will-generally-work-from-the-command-prompt-on-windows-10-and-newer-replace-text-in-italitcs)
+  - [Preparing the RaspberryPi](#preparing-the-raspberrypi)
+  - [Configuring the RaspberryPi](#configuring-the-raspberrypi)
+  - [Adding external storage devices](#adding-external-storage-devices)
+  - [Installing the Experiment Monitoring package](#installing-the-experiment-monitoring-package)
+  - [Setting up the continuous data acquisition](#setting-up-the-continuous-data-acquisition)
+  - [Setting up automatic backups](#setting-up-automatic-backups)
+  - [Setting up the data monitoring](#setting-up-the-data-monitoring)
+  - [Setting up automatic alerts](#setting-up-automatic-alerts)
+  - [Known bugs and problems](#known-bugs-and-problems)
 
 ## Recommended Hardware
 

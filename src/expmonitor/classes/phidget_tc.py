@@ -13,7 +13,7 @@ from Phidget22.Devices import TemperatureSensor
 
 # Local imports:
 from expmonitor.classes.sensor import Sensor
-import time
+import time, random
 
 class PhidgetTC(Sensor):
 
@@ -45,13 +45,14 @@ class PhidgetTC(Sensor):
         self.hub_serial = hub_serial
         self.hub_port = hub_port
         self.hub_channel = hub_channel
-        self.ts_handle = TemperatureSensor.TemperatureSensor()
-        # Set addressing parameters to specify which channel to open:
-        self.ts_handle.setHubPort(self.hub_port)
-        self.ts_handle.setDeviceSerialNumber(self.hub_serial)
-        self.ts_handle.setChannel(self.hub_channel)
-        ## open the channel
-        self.ts_handle.openWaitForAttachment(1500)
+        if not self.is_dummy:
+            self.ts_handle = TemperatureSensor.TemperatureSensor()
+            # Set addressing parameters to specify which channel to open:
+            self.ts_handle.setHubPort(self.hub_port)
+            self.ts_handle.setDeviceSerialNumber(self.hub_serial)
+            self.ts_handle.setChannel(self.hub_channel)
+            ## open the channel
+            self.ts_handle.openWaitForAttachment(1500)
 
     def connect(self):
         """
@@ -59,6 +60,8 @@ class PhidgetTC(Sensor):
         """
         ## connecting to Phidget takes a long time so we only check if we are connected or not. 
         # Open Phidgets and wait for attachment:
+        if self.is_dummy:
+            return
         if not self.ts_handle.getAttached():
             self.ts_handle.openWaitForAttachment(1000)
 
@@ -69,6 +72,8 @@ class PhidgetTC(Sensor):
 
     def rcv_vals(self):
         # Receive temperature value:
+        if self.is_dummy:
+            return random.random()*10+20
         return self.ts_handle.getTemperature()
 
 

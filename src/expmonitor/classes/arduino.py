@@ -18,26 +18,12 @@ import numpy as np
 import serial
 import time
 
-# Configure the serial connection (update 'COM port' and baudrate)
-# arduino = serial.Serial(port='COM3', baudrate=9600, timeout=.1)
-
-# def write_read(x):
-#     arduino.write(bytes(x, 'utf-8'))
-#     time.sleep(0.05)
-#     data = arduino.readline()
-#     return data.decode('utf-8').strip()
-
-# while True:
-#     num = input("Enter a number: ")
-#     value = write_read(num)
-#     print(f"Response from Arduino: {value}")
-
 
 class Arduino:
     def __init__(
-        self,port, baudrate=9600,
+        self,port, baudrate=9600, is_dummy=False
     ):
-        """implements the Arduino class.
+        """Implements the Arduino class.
 
         Parameters
         ----------
@@ -47,10 +33,15 @@ class Arduino:
             the beaudrate for the connexion, by default 9600
         timeout : float, optional
             in seconds, the time before which the arduino stops to connect, by default .1
+        is_dummy : bool, optional
+            connect to a fake serial port. For test only. 
         """
-        self.ser = serial.Serial(port, baudrate, timeout=1.)
+        if is_dummy:
+            self.ser = FakeSerial(port, baudrate)
+        else:
+            self.ser = serial.Serial(port, baudrate, timeout=1.5)
 
-    def query(self, cmd, timeout=.5):
+    def query(self, cmd, timeout=.5,verbose=False):
         """Query the arduino the command cmd
 
         Parameters
@@ -59,8 +50,12 @@ class Arduino:
             the command string
         timeout : float, optional
             the maximum time to wait for the answer in seconds, by default .5
+        verbose : bool, optional
+            if the command sent to the arduino is printed or not
         """
         self.ser.timeout = timeout
+        if verbose:
+            print(f"[ArduinoQuery] {cmd}")
         self.ser.write(f"{cmd}\n".encode('utf-8'))
         return self.ser.readline().decode('utf-8').strip()
 
@@ -75,3 +70,16 @@ class ArduinoMultiSensor(MultiSensor):
     def __init__(self, board, database, number_of_sensors, **kwargs):
         self._board = board
         super().__init__(database, number_of_sensors, **kwargs)
+
+
+
+### Dummy mode
+class FakeSerial():
+    def __init__(self, port, baudrate, timeout=.1):
+        self.timeout=timeout
+        print(f"[FakeSerialPort] Initialisation on port {port} with baudrate {baudrate}.")
+    def write(sef, cmd):
+        print(f"[FakeSerialPort] Send command '{cmd}'.")
+    def readline(self):
+        return "".encode('utf-8')
+
