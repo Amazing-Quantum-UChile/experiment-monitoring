@@ -5,7 +5,7 @@ Created on Tue Feb 08 12:07:49 2022
 
 Fixtures for all testing modules.
 
-@author: jp
+@author: jp, victor
 """
 
 # Standard library imports:
@@ -61,7 +61,7 @@ def multi_sensor_instance(database_instance):
 def lab_temp_phidget(database_instance):
     """Return sensor object for lab temp phidget."""
     tc0 = PhidgetTC(
-         hub_serial=622701,
+        hub_serial=622701,
         hub_port=0,
         hub_channel=0,
         database=database_instance,
