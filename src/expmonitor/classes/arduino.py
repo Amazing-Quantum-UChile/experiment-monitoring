@@ -10,8 +10,7 @@
 """
 Content of arduino.py
 
-Please document your code ;-).
-
+Implement the Base class for the Arduino Board. The board must be given to any sensor which is connected to the arduino. 
 """
 from expmonitor.classes.sensor import Sensor, MultiSensor
 import numpy as np
@@ -102,7 +101,7 @@ class ArduinoSensor(Sensor):
 class ArduinoMultiSensor(MultiSensor):
     def __init__(self, board, database, number_of_sensors, **kwargs):
         self._board = board
-        super().__init__(database, number_of_sensors, **kwargs)
+        super().__init__(database=database, number_of_sensors=number_of_sensors, **kwargs)
 
 
 

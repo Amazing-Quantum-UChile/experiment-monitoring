@@ -434,12 +434,14 @@ class MultiSensor(Sensor):
             return
 
         ## Loop over all sensors
+        self.measurement = [None for i in range(self.number_of_sensors)]
         for i in range(self.number_of_sensors):
             subsensor = self.subsensors[i]
             # store the measurement in each subsensor
             subsensor.set_vals(self.raw_vals[i])
             # we call the measure function (that will process data)
             subsensor.measure(verbose=verbose, show_raw=show_raw)
+            self.measurement[i]=subsensor.measurement
         self.disconnect()
 
     def to_db(self):

@@ -17,6 +17,7 @@ from expmonitor.classes.phidget_tc import PhidgetTC
 from expmonitor.classes.arduino import Arduino
 from expmonitor.utilities.database import Database
 from expmonitor.classes.sensor import SubSensor, DummyMultiSensor
+from expmonitor.classes.arduino_adc import Arduino_ADC_Sensor
 
 # We do not have hardware so all classes in dummy mode
 IS_DUMMY=True
@@ -30,7 +31,7 @@ def database_instance():
 def arduino_instance():
     return Arduino(port=1, baudrate=9600, is_dummy=IS_DUMMY)
 
-######## SENSORS ########
+######## SENSORS BASE CLASS ########
 @pytest.fixture(scope="function")
 def subsensor_instance(database_instance):
     return SubSensor(database_instance, descr="My amazing sensor", is_dummy=IS_DUMMY)
@@ -55,6 +56,28 @@ def multi_sensor_instance(database_instance):
     )
     return multisensor
 
+######## ARDUINO SENSORS ########
+
+@pytest.fixture(scope="function")
+def arduino_adc_instance(database_instance,arduino_instance ):
+    subsensors_parameters = [
+            {
+                "sensor_number": 9,
+                "descr": "voltage monitoring photodiode",
+                "unit": "V",
+                "category": "voltage",
+                "sensor_type": "Photodiode",
+                "save_to_database": True,
+            }
+        ]
+    adc_sensor = Arduino_ADC_Sensor(
+        database=database_instance,
+        board= arduino_instance,
+        sensor_parameters=subsensors_parameters,
+        descr="My amazing Multi-sensor",
+        is_dummy=IS_DUMMY
+    )
+    return adc_sensor
 
 ######## PHIDGETS ########
 @pytest.fixture(scope="function")
