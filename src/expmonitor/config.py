@@ -22,8 +22,14 @@ acq_interv = 3
 # Instanciate the database connection
 database = Database(port=8086, name="amazQdatabase")
 
+
+
+
 """ ---------- SENSOR SETUP ---------- """
 # Import all specific sensor classes:
+
+
+
 
 ###############################
 # # Setup Temperature Phidgets:
@@ -37,6 +43,7 @@ tc0 = PhidgetTC(
     database=database,
     descr="temp_k_table_rb_vapor",
     location="Optical table, optics near the science Rb Cell",
+    is_dummy=False
 )
 tc1 = PhidgetTC(
     hub_serial=622701,
@@ -45,6 +52,7 @@ tc1 = PhidgetTC(
     database=database,
     descr="temp_k_table_locking",
     location="Optical table, optics of the locking.",
+    is_dummy=False
 )
 tc2 = PhidgetTC(
     hub_serial=622701,
