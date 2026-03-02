@@ -41,18 +41,31 @@ class Arduino:
         """
         self.port = port
         self.baudrate=baudrate
-        self.is_dummy=is_dummy
-        self.connect_devices()
+        self.is_dummy = is_dummy
+        self.connect_device()
         
 
     def connect_device(self):
-        if is_dummy:
+        if self.is_dummy:
             self.ser = FakeSerial(self.port, self.baudrate)
             self.is_online=True
         else:
             try:
                 self.ser = serial.Serial(self.port, self.baudrate, timeout=1.5)
+                
+                time.sleep(2) # Let the arduino the time to reboot
+                msg = self.ser.readline().decode('utf-8', errors='ignore').strip()
                 self.is_online=True
+                try:
+                    if msg[0]=="1":
+                        logger.info("[Arduino] Connection with all sensors succeded.")
+                    elif msg[0]=="0":
+                        logger.error("[Arduino] Connection with some sensors failed.  Message received from Arduino is '{}'".format(msg[2:]))
+                    else :
+                        logger.error("[Arduino] Connection with some sensors might have failed. Message received from Arduino is '{}'".format(msg))
+                except Exception as e:
+                    logger.error("[Arduino] Error in Arduino initialisation, function connect_device of Arduino.arduino.py. Error is {}".format(e ))
+
             except Exception as e:
                 logger.error(f"[Arduino] Connection failed. Error is {e}")
                 self.is_online = False
@@ -72,7 +85,7 @@ class Arduino:
         """
         if not self.is_online:
             logger.error("[Arduino] Device is queried but offline. Trying to connect...")
-            self.connect_devices()
+            self.connect_device()
         self.ser.timeout = timeout
         if verbose:
             logger.info(f"[ArduinoQuery] {cmd}")
@@ -103,3 +116,9 @@ class FakeSerial():
     def readline(self):
         return "".encode('utf-8')
 
+
+
+if __name__ == "__main__":
+    arduino = Arduino(port = "/dev/ttyUSB0")
+    a = arduino.query("a", timeout=2.)
+    print(a)
