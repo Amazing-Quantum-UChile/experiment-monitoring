@@ -24,8 +24,7 @@ print the exception traceback to stdout along with the execution time.
 """
 
 # Standard library imports:
-import time, sys, logging
-from pathlib import Path
+import time, sys, logging, os
 
 # Local imports:
 from expmonitor.config import *
@@ -34,7 +33,7 @@ from expmonitor.utilities.exception_handler import InfluxDBHandler
 from expmonitor.utilities.utility import get_subclass_objects
 
 
-def data_acquisition(sensors, exception_handler):
+def data_acquisition(sensors, logger):
     """Execute measure method for all sensors."""
     for sensor in sensors:
         try:
@@ -46,7 +45,8 @@ def data_acquisition(sensors, exception_handler):
             sensor.filter_spikes()
         # Log exceptions but continue execution:
         except Exception as e:
-            exception_handler.log_exception(sensor, e)
+            msg= "[{}]: {}".format(sensor.descr, e)
+            logger.error(msg)
     # Measurement frequency given by acq_interv:
     time.sleep(acq_interv)
 
@@ -56,13 +56,20 @@ def setup_logging(
     database_obj,
     log_format,
     log_level=logging.WARNING,
-    log_file_path=Path.home() / ".expmonitor",
+    log_dir=os.path.join(os.path.expanduser("~"), ".expmonitor"),
+    overwrite_log_file=True
 ):
     # the logger name must be the same accross all files
     logger = logging.getLogger("ExpMonitorLogger")
     logger.setLevel(log_level)
     # 1. Store error in the log file
-    file_handler = logging.FileHandler(log_file_path)
+    if not os.path.exists(log_dir):
+        os.makedirs(log_dir, exist_ok=True)
+    if overwrite_log_file:
+        mode='w'
+    else: 
+        mode = "a"
+    file_handler = logging.FileHandler(os.path.join(log_dir, "logs.txt"), mode = mode)
     file_handler.setFormatter(log_format)
     logger.addHandler(file_handler)
 
@@ -96,14 +103,16 @@ def main():
     logger = setup_logging(
         verbose=verbose,
         database_obj=database,
+        log_format=log_format,
         log_level=log_level,
-        log_file_path=log_file_path,
+        log_dir=log_dir,
+        overwrite_log_file=overwrite_log_file
     )
     # Get all user defined sensor objects:
     sensors = get_subclass_objects(Sensor)
     sensor_names = "All sensor connected: "
     for sensor in sensors:
-        sensor_names.append(sensor.descr) + ", "
+        sensor_names +=sensor.descr + ", "
     logger.info(sensor_names[:-2]+".")
     # If int argument passed on command line: Run user-defined number of times:
     try:
@@ -111,10 +120,10 @@ def main():
         iterations = int(sys.argv[0])
         for iteration in range(iterations):
             print("Iteration", iteration + 1, "/", iterations)
-            data_acquisition(sensors, exception_handler)
+            data_acquisition(sensors, logger)
     except (IndexError, ValueError):  # Default: Run continously
         while True:
-            data_acquisition(sensors, exception_handler)
+            data_acquisition(sensors, logger)
     if time_exec:
         print("--- Execution time: {:.2f} seconds ---".format(time.time() - start_time))
 

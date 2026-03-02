@@ -22,10 +22,16 @@ from tqdm import tqdm  # pip3 install tqdm
 
 class DbSpikeFilter:
 
-    def __init__(self):
-        self.database = 'helium2'
-        self.client = InfluxDBClient(host='localhost', port=8086,
-                                     database=self.database)
+    def __init__(self, database):
+        """_summary_
+
+        Parameters
+        ----------
+        database : expmonitor.utilities.database.Database
+            the database object in which data are stored.  
+        """
+        self.client = database.client
+        
         self.series_list = []
         self.data = {}
         self.timestamps = {}

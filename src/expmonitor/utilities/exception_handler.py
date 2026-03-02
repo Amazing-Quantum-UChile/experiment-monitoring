@@ -20,4 +20,5 @@ class InfluxDBHandler(logging.Handler):
 
     def emit(self, record):
         log_msg = self.format(record)
-        self.database.store_log(log_msg)
+        
+        self.database.store_log(log_msg, record.levelname, unique_id = str(record.created))

@@ -59,37 +59,45 @@ class Database:
         if not self.is_dummy:
             self.client.write_points([json_dict])
         else:
-            print(f"[DummyDatabase] Writting {json_dict} into the database.")
+            print("[DummyDatabase] Writing {} into the database.".format(json_dict))
 
-    def store_log(self, msg):
-        """store a log in the database (max is self.max_logs=10 by default)
+    def store_log(self, msg, levelname, unique_id):
+        """store a log in the database (max is self.max_logs=10 by)
 
         Parameters
         ----------
         msg : str
             msg to store in the database. 
+        levelname: str
+            The level of the error ("DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL")
+        unique id: str
+            we add an ID to make sure InfluxDB log all errors.
         """
         measurement = "logs"
+
+        
         # 1. Get all existing points sorted by time
-        points = list(self.client.query(f'SELECT * FROM "{measurement}" ORDER BY time ASC').get_points())
+        points = list(self.client.query('SELECT * FROM "{}" ORDER BY time ASC'.format(measurement)).get_points())
     
         # 2. If we have 10 or more, delete the oldest one
         while len(points) >= self.max_logs:
             oldest_time = points[0]['time']
-            self.client.query(f"DELETE FROM {measurement} WHERE time = '{oldest_time}'")
-            points = list(self.client.query(f'SELECT * FROM "{measurement}" ORDER BY time ASC').get_points())
+            self.client.query("DELETE FROM {} WHERE time = '{}'".format(measurement, oldest_time))
+            points = list(self.client.query('SELECT * FROM "{}" ORDER BY time ASC'.format(measurement)).get_points())
 
         # 3. Prepare the new point
         json_error = {
             "measurement": "logs",
             "time": datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ"),
+            "tags": { "level": levelname,
+                      "unique_id":unique_id },
             "fields": {
                 "message": msg
             }
         }
-
+        
         # 4. Write the new point
         if not self.is_dummy:
             self.client.write_points([json_error])
         else:
-            print(f"[DummyDatabase] Error Logged: {json_error}")
+            print("[DummyDatabase] Error Logged: {}".format(json_error))

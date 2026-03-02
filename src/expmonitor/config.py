@@ -14,8 +14,8 @@ or feel free to add any new hardware interface you want to connect.
 
 
 """ ---------- GENERAL SETUP ---------- """
-import logging
-from pathlib import Path
+import logging, os
+
 
 from expmonitor.utilities.database import Database
 
@@ -92,6 +92,6 @@ tc4 = PhidgetTC(
 overwrite_log_file = True  # Replace old log file each time exec is run
 verbose = True  # Prints exception traceback to stdout
 log_level = logging.ERROR
-log_file_path = Path.home() / ".expmonitor"
+log_dir =os.path.join(os.path.expanduser("~"), ".expmonitor", "logs.txt")
 log_format = logging.Formatter('%(asctime)s – %(levelname)s — %(message)s', datefmt='%Y/%m/%d - %Hh%M')
 

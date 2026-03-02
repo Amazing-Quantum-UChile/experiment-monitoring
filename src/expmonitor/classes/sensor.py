@@ -15,6 +15,8 @@ All interfaces for acquiring data should be subclasses that inherit from the Sen
 from abc import ABC, abstractmethod
 import traceback
 import numpy as np
+import logging
+logger = logging.getLogger("ExpMonitorLogger")
 
 # Local imports
 from expmonitor.utilities.spike_filter import SpikeFilter
@@ -86,7 +88,7 @@ class AbstractSensor(ABC):
         self.save_to_database = save_to_database
         self.is_dummy=is_dummy
         # Spike filter setup:
-        # self.spike_filter = SpikeFilter(self, spike_threshold_perc=None)
+        self.spike_filter = SpikeFilter(self, spike_threshold_perc=None)
 
     """ ---------- PROPERTIES ---------- """
 
@@ -269,6 +271,7 @@ class Sensor(AbstractSensor):
     def rcv_vals(self):
         """Receive and return measurement values from sensor."""
         pass  # return received_vals
+
 
 
 
