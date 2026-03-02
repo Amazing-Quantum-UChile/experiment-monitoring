@@ -15,8 +15,7 @@ Collection of helper functions that are used in multiple scripts.
 import inspect
 
 def get_subclass_objects(BaseClass):
-    """Get all objects that extend BaseClass from global scope of the outermost
-    caller frame."""
+    """Get all objects that extend BaseClass from global scope of the outermost  caller frame."""
     # Get current frame:
     f = inspect.currentframe()
     # Get globals of outermost caller frame:

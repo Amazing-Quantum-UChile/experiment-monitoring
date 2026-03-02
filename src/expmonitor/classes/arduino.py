@@ -18,6 +18,9 @@ import numpy as np
 import serial
 import time
 
+import logging
+logger = logging.getLogger("ExpMonitorLogger")
+
 
 class Arduino:
     def __init__(
@@ -36,10 +39,24 @@ class Arduino:
         is_dummy : bool, optional
             connect to a fake serial port. For test only. 
         """
+        self.port = port
+        self.baudrate=baudrate
+        self.is_dummy=is_dummy
+        self.connect_devices()
+        
+
+    def connect_device(self):
         if is_dummy:
-            self.ser = FakeSerial(port, baudrate)
+            self.ser = FakeSerial(self.port, self.baudrate)
+            self.is_online=True
         else:
-            self.ser = serial.Serial(port, baudrate, timeout=1.5)
+            try:
+                self.ser = serial.Serial(self.port, self.baudrate, timeout=1.5)
+                self.is_online=True
+            except Exception as e:
+                logger.error(f"[Arduino] Connection failed. Error is {e}")
+                self.is_online = False
+                self.ser = FakeSerial(self.port, self.baudrate)
 
     def query(self, cmd, timeout=.5,verbose=False):
         """Query the arduino the command cmd
@@ -53,9 +70,12 @@ class Arduino:
         verbose : bool, optional
             if the command sent to the arduino is printed or not
         """
+        if not self.is_online:
+            logger.error("[Arduino] Device is queried but offline. Trying to connect...")
+            self.connect_devices()
         self.ser.timeout = timeout
         if verbose:
-            print(f"[ArduinoQuery] {cmd}")
+            logger.info(f"[ArduinoQuery] {cmd}")
         self.ser.write(f"{cmd}\n".encode('utf-8'))
         return self.ser.readline().decode('utf-8').strip()
 
@@ -77,7 +97,7 @@ class ArduinoMultiSensor(MultiSensor):
 class FakeSerial():
     def __init__(self, port, baudrate, timeout=.1):
         self.timeout=timeout
-        print(f"[FakeSerialPort] Initialisation on port {port} with baudrate {baudrate}.")
+        logger.info(f"[FakeSerialPort] Initialisation on port {port} with baudrate {baudrate}.")
     def write(sef, cmd):
         print(f"[FakeSerialPort] Send command '{cmd}'.")
     def readline(self):

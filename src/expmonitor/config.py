@@ -14,6 +14,8 @@ or feel free to add any new hardware interface you want to connect.
 
 
 """ ---------- GENERAL SETUP ---------- """
+import logging
+from pathlib import Path
 
 from expmonitor.utilities.database import Database
 
@@ -21,7 +23,6 @@ from expmonitor.utilities.database import Database
 acq_interv = 3
 # Instanciate the database connection
 database = Database(port=8086, name="amazQdatabase")
-
 
 
 
@@ -85,12 +86,12 @@ tc4 = PhidgetTC(
 # batteries = EatonUPS('Batteries', '10.117.51.129')
 
 
-""" ---------- DETAILS ---------- """
 
-
+""" ---------- LOG SET UP ----------"""
 # Exception logging:
 overwrite_log_file = True  # Replace old log file each time exec is run
-log_full_tb = False  # Log entire traceback for exceptions, not just one line
-
-# Debugging:
 verbose = True  # Prints exception traceback to stdout
+log_level = logging.ERROR
+log_file_path = Path.home() / ".expmonitor"
+log_format = logging.Formatter('%(asctime)s – %(levelname)s — %(message)s', datefmt='%Y/%m/%d - %Hh%M')
+

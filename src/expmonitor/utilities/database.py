@@ -18,7 +18,7 @@ from datetime import datetime
 
 class Database:
 
-    def __init__(self, port, name, is_dummy=False):
+    def __init__(self, port, name, is_dummy=False, max_logs=10):
         """Connects to the InfluxDB Database.
 
         Parameters
@@ -29,10 +29,13 @@ class Database:
             the name of the database
         is_dummy : bool, optional
             if True, instanciate a fake database for tests, by default False
+        max_logs : int
+            the maximum number of logs stored in the database. 
         """
         self.port = port  # int
         self.name = name  # Make sure this is the same than the name of your influx database
         self.is_dummy = is_dummy
+        self.max_logs = 10
         if not self.is_dummy:
             self.client = InfluxDBClient(
                 host="localhost", port=self.port, database=self.name
@@ -57,3 +60,36 @@ class Database:
             self.client.write_points([json_dict])
         else:
             print(f"[DummyDatabase] Writting {json_dict} into the database.")
+
+    def store_log(self, msg):
+        """store a log in the database (max is self.max_logs=10 by default)
+
+        Parameters
+        ----------
+        msg : str
+            msg to store in the database. 
+        """
+        measurement = "logs"
+        # 1. Get all existing points sorted by time
+        points = list(self.client.query(f'SELECT * FROM "{measurement}" ORDER BY time ASC').get_points())
+    
+        # 2. If we have 10 or more, delete the oldest one
+        while len(points) >= self.max_logs:
+            oldest_time = points[0]['time']
+            self.client.query(f"DELETE FROM {measurement} WHERE time = '{oldest_time}'")
+            points = list(self.client.query(f'SELECT * FROM "{measurement}" ORDER BY time ASC').get_points())
+
+        # 3. Prepare the new point
+        json_error = {
+            "measurement": "logs",
+            "time": datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ"),
+            "fields": {
+                "message": msg
+            }
+        }
+
+        # 4. Write the new point
+        if not self.is_dummy:
+            self.client.write_points([json_error])
+        else:
+            print(f"[DummyDatabase] Error Logged: {json_error}")
