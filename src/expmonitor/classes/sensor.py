@@ -229,6 +229,7 @@ class AbstractSensor(ABC):
                 save_raw=self.save_raw,
                 raw=self.raw_vals,
             )
+            logger.debug("[] - {} {}".format(self.descr,self.measurement, self.unit ))
         else:
             print(
                 "Measurement of {} ({}) is outside the range {}. Not saved into database.".format(
