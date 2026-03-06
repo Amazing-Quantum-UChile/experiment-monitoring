@@ -26,6 +26,7 @@ print the exception traceback to stdout along with the execution time.
 # Standard library imports:
 import time, sys, logging, os
 
+
 # Local imports:
 from expmonitor.config import *
 from expmonitor.classes.sensor import Sensor
@@ -51,45 +52,12 @@ def data_acquisition(sensors, logger):
     time.sleep(acq_interv)
 
 
-def setup_logging(
-    verbose,
-    database_obj,
-    log_format,
-    log_level=logging.WARNING,
-    log_dir=os.path.join(os.path.expanduser("~"), ".expmonitor"),
-    overwrite_log_file=True
-):
-    # the logger name must be the same accross all files
-    logger = logging.getLogger("ExpMonitorLogger")
-    logger.setLevel(log_level)
-    # 1. Store error in the log file
-    if not os.path.exists(log_dir):
-        os.makedirs(log_dir, exist_ok=True)
-    if overwrite_log_file:
-        mode='w'
-    else: 
-        mode = "a"
-    file_handler = logging.FileHandler(os.path.join(log_dir, "logs.txt"), mode = mode)
-    file_handler.setFormatter(log_format)
-    logger.addHandler(file_handler)
-
-    # 2. Store error in the InfluxDB database
-    influx_handler = InfluxDBHandler(database_obj)
-    influx_handler.setFormatter(log_format)
-    logger.addHandler(influx_handler)
-
-    # 3. Show error in the terminal
-    if verbose:
-        console_handler = logging.StreamHandler()
-        console_handler.setFormatter(logging.Formatter("%(levelname)s: %(message)s"))
-        logger.addHandler(console_handler)
-
-    return logger
 
 
 def main():
     """Execute data acquisition cycle continously or a given number of times."""
     # Check for execution time argument on command line:
+    logger = logging.getLogger("ExpMonitorLogger")
     if "t" in sys.argv:
         time_exec = True
         start_time = time.time()
@@ -98,19 +66,14 @@ def main():
         time_exec = False
     # Check for verbose argument on command line to override:
     if "v" in sys.argv:
-        exception_handler.verbose = True
         sys.argv.remove("v")
-    logger = setup_logging(
-        verbose=verbose,
-        database_obj=database,
-        log_format=log_format,
-        log_level=log_level,
-        log_dir=log_dir,
-        overwrite_log_file=overwrite_log_file
-    )
+        if not verbose:
+            console_handler = logging.StreamHandler()
+            console_handler.setFormatter(logging.Formatter("%(levelname)s: %(message)s"))
+            logger.addHandler(console_handler)
     # Get all user defined sensor objects:
     sensors = get_subclass_objects(Sensor)
-    sensor_names = "All sensor connected: "
+    sensor_names = "Connected sensors are: "
     for sensor in sensors:
         sensor_names +=sensor.descr + ", "
     logger.info(sensor_names[:-2]+".")

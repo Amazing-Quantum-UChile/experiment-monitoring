@@ -192,6 +192,9 @@ class AbstractSensor(ABC):
         show_raw : bool, optional
             if verbose true, shows the raw data of the measurement, by default False
         """
+        ## Initiate measurement to overwrite the old value.
+        self.measurement = float('nan')
+        self.raw_vals = float('nan')
         self.connect()
         self.raw_vals = self.rcv_vals()
         self.measurement = self._convert(self.raw_vals)
@@ -410,31 +413,31 @@ class MultiSensor(Sensor):
         """
         ## connect and receive all values
         self.connect()
+        self.measurement = [float('nan') for i in range(self.number_of_sensors)]
         self.raw_vals = (
             self.rcv_vals()
         )  # this should be a list of values of size number_of_sensors
         try:
             if len(self.raw_vals) != self.number_of_sensors:
-                print(
-                    "Error when reading the measurement. Please check that the rcv_vals method does return a list of size {} and not {}".format(
-                        self.number_of_sensors, len(self.raw_vals)
+                logger.error(
+                    "[{}] Measurement failed. The number of measurement does not match the number of subsensors ({}). Measurement is: '{}'".format(self.descr,
+                        len(self.raw_vals), self.number_of_sensors, self.raw_vals
                     )
                 )
                 self.successful_measurement = False
                 return
             else:
                 self.successful_measurement = True
-        except TypeError:
-            print(
-                "Error when reading the measurement. Please check that the rcv_vals method does return a list of size {}".format(
-                    self.number_of_sensors
+        except TypeError as e:
+            logger.error(
+                    "[{}] Measurement failed. The number of measurement does not match the number of subsensors ({}). Measurement  '{}' has no len and error is {}".format(self.descr,
+                        len(self.raw_vals), self.number_of_sensors, self.raw_vals,e
+                    )
                 )
-            )
             self.successful_measurement = False
             return
 
         ## Loop over all sensors
-        self.measurement = [None for i in range(self.number_of_sensors)]
         for i in range(self.number_of_sensors):
             subsensor = self.subsensors[i]
             # store the measurement in each subsensor

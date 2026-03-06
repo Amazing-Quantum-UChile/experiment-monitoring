@@ -15,6 +15,9 @@ from Phidget22.Devices import TemperatureSensor
 from expmonitor.classes.sensor import Sensor
 import time, random
 
+import logging
+logger = logging.getLogger("ExpMonitorLogger")
+
 class PhidgetTC(Sensor):
 
     def __init__(self, 
@@ -53,6 +56,8 @@ class PhidgetTC(Sensor):
             self.ts_handle.setChannel(self.hub_channel)
             ## open the channel
             self.ts_handle.openWaitForAttachment(1500)
+            # if self.ts_handle.getAttached():
+            #     logger.info("[{}] Connection succeeded.".format(self.descr))
 
     def connect(self):
         """

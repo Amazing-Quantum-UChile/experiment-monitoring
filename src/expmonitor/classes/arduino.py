@@ -51,7 +51,6 @@ class Arduino:
         else:
             try:
                 self.ser = serial.Serial(self.port, self.baudrate, timeout=1.5)
-                
                 time.sleep(2) # Let the arduino the time to reboot
                 msg = self.ser.readline().decode('utf-8', errors='ignore').strip()
                 self.is_online=True
@@ -94,13 +93,13 @@ class Arduino:
 
 class ArduinoSensor(Sensor):
     def __init__(self, board, database, **kwargs):
-        self._board = board
+        self.board = board
         super().__init__(database, **kwargs)
 
 
 class ArduinoMultiSensor(MultiSensor):
     def __init__(self, board, database, number_of_sensors, **kwargs):
-        self._board = board
+        self.board = board
         super().__init__(database=database, number_of_sensors=number_of_sensors, **kwargs)
 
 

@@ -10,8 +10,7 @@
 '''
 Content of arduino_adc.py
 
-Please document your code ;-).
-
+Implements the Arduino ADC class. With our MEGA board, we have 16 inputs i.e. 16 subsensors. 
 '''
 from expmonitor.classes.arduino import ArduinoMultiSensor
 import random
@@ -32,8 +31,11 @@ class Arduino_ADC_Sensor(ArduinoMultiSensor):
         """Receive and return measurement values from sensor."""
         if not self.is_dummy:
             result = self.board.query("a", timeout=.5)
-            ## transform the string into list
-            return [float(elem) for elem in result.split(",")]
+            try:
+                ## transform the string into list
+                return [float(elem) for elem in result.split(",")]
+            except:
+                return result
         else:
             return [random.random() for i in range(self.number_of_sensors)]
 

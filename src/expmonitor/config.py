@@ -16,22 +16,43 @@ or feel free to add any new hardware interface you want to connect.
 """ ---------- GENERAL SETUP ---------- """
 import logging, os
 
-
+from expmonitor.utilities.exception_handler import setup_logging
 from expmonitor.utilities.database import Database
-
+from expmonitor.classes.arduino import Arduino
+from expmonitor.classes.arduino_adc import Arduino_ADC_Sensor
 # Define interval [s] for data acquisition (+ execution time):
 acq_interv = 3
+
 # Instanciate the database connection
 database = Database(port=8086, name="amazQdatabase")
 
+""" ---------- LOG SET UP ----------"""
+# Exception logging:
+overwrite_log_file = True  # Replace old log file each time exec is run
+verbose = False  # Prints exception traceback to stdout
+log_level = logging.INFO
+log_dir =os.path.join(os.path.expanduser("~"), ".expmonitor", "logs.txt")
+log_format = logging.Formatter('%(asctime)s – %(levelname)s — %(message)s', datefmt='%Y/%m/%d - %Hh%M')
+logger = setup_logging(
+        name="ExpMonitorLogger",#This name must match the name in all files
+        verbose=verbose,
+        database_obj=database,
+        log_format=log_format,
+        log_level=log_level,
+        log_dir=log_dir,
+        overwrite_log_file=overwrite_log_file
+    )
+
+
+""" ---------- ARDUINO CONNECTION ---------- """
+
+
+arduino_board = Arduino(port="/dev/ttyUSB0", baudrate=9600)
 
 
 """ ---------- SENSOR SETUP ---------- """
+
 # Import all specific sensor classes:
-
-
-
-
 ###############################
 # # Setup Temperature Phidgets:
 ###############################
@@ -72,6 +93,26 @@ tc4 = PhidgetTC(
     location="Experiment computer"
 )
 
+#############################
+######## Arduino ADC ########
+#############################
+## In this list, we provide the information of all channels of the ADC. 
+adc_subsensors_parameters = [
+            {
+            "sensor_number": 9,# i.e. A9 
+            "descr": "voltage monitoring photodiode",
+            "unit": "V",
+            "category": "voltage",
+            "sensor_type": "Photodiode",
+            "save_to_database": True,
+            }
+        ]
+adc_sensor = Arduino_ADC_Sensor(
+    database=database,
+    board= arduino_board,
+    sensor_parameters=adc_subsensors_parameters,
+    descr="adc_arduino",
+)
 
 # # Setup serial devices:
 # primary_vac = TPG261('Primary Pump', '/dev/ttyUSB0')
@@ -86,12 +127,4 @@ tc4 = PhidgetTC(
 # batteries = EatonUPS('Batteries', '10.117.51.129')
 
 
-
-""" ---------- LOG SET UP ----------"""
-# Exception logging:
-overwrite_log_file = True  # Replace old log file each time exec is run
-verbose = True  # Prints exception traceback to stdout
-log_level = logging.ERROR
-log_dir =os.path.join(os.path.expanduser("~"), ".expmonitor", "logs.txt")
-log_format = logging.Formatter('%(asctime)s – %(levelname)s — %(message)s', datefmt='%Y/%m/%d - %Hh%M')
 
