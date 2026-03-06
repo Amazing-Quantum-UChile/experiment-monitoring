@@ -20,6 +20,7 @@ from expmonitor.utilities.exception_handler import setup_logging
 from expmonitor.utilities.database import Database
 from expmonitor.classes.arduino import Arduino
 from expmonitor.classes.arduino_adc import Arduino_ADC_Sensor
+from expmonitor.classes.arduino_AHT10 import Arduino_AHT10_Sensor
 # Define interval [s] for data acquisition (+ execution time):
 acq_interv = 3
 
@@ -29,7 +30,7 @@ database = Database(port=8086, name="amazQdatabase")
 """ ---------- LOG SET UP ----------"""
 # Exception logging:
 overwrite_log_file = True  # Replace old log file each time exec is run
-verbose = False  # Prints exception traceback to stdout
+verbose = True  # Prints exception traceback to stdout
 log_level = logging.INFO
 log_dir =os.path.join(os.path.expanduser("~"), ".expmonitor", "logs.txt")
 log_format = logging.Formatter('%(asctime)s – %(levelname)s — %(message)s', datefmt='%Y/%m/%d - %Hh%M')
@@ -113,6 +114,9 @@ adc_sensor = Arduino_ADC_Sensor(
     sensor_parameters=adc_subsensors_parameters,
     descr="adc_arduino",
 )
+aht10 = Arduino_AHT10_Sensor( database=database,
+    board= arduino_board,)
+
 
 # # Setup serial devices:
 # primary_vac = TPG261('Primary Pump', '/dev/ttyUSB0')

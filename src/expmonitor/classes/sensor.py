@@ -59,7 +59,7 @@ class AbstractSensor(ABC):
         sensor_type : str
             the type of sensor e.g. k-type thermocouple.
         conversion_fctn : lambda function, optional
-            the conversion function of the sensor, by default lambdat:t
+            çthe conversion function of the sensor, by default lambdat:t
         num_prec : float, optional
             the precision to register in the database, by default None
         save_raw : bool, optional
@@ -193,8 +193,6 @@ class AbstractSensor(ABC):
             if verbose true, shows the raw data of the measurement, by default False
         """
         ## Initiate measurement to overwrite the old value.
-        self.measurement = float('nan')
-        self.raw_vals = float('nan')
         self.connect()
         self.raw_vals = self.rcv_vals()
         self.measurement = self._convert(self.raw_vals)
@@ -233,8 +231,8 @@ class AbstractSensor(ABC):
             )
         else:
             print(
-                "Measurement ({}) is outside the range {}. Not saved into database.".format(
-                    self.measurement, self.value_limit
+                "Measurement of {} ({}) is outside the range {}. Not saved into database.".format(
+                    self.descr,self.measurement, self.value_limit
                 )
             )
 

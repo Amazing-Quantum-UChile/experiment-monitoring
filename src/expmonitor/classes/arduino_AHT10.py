@@ -10,14 +10,13 @@
 '''
 Content of arduino_AHT10.py
 
-Please document your code ;-).
-
+Implements the AHT10 sensor to dialog with the arduino. "h" command. See the arduino file in arduino_src/main to access the Arduino driver. 
 '''
 
 from expmonitor.classes.arduino import ArduinoMultiSensor
 import random
 
-class Arduino_ADC_Sensor(ArduinoMultiSensor):
+class Arduino_AHT10_Sensor(ArduinoMultiSensor):
     def __init__(self,
                 board, 
                 database,
@@ -38,9 +37,15 @@ class Arduino_ADC_Sensor(ArduinoMultiSensor):
             "category": "humidity",
             "sensor_type": "capacitive polymer hygrometer",
             "save_to_database": True,
+            "value_limit":(0,100),
             }],
                  **kwargs):
-        super().__init__(board=board, database=database, number_of_sensors=number_of_sensors, **kwargs)
+        super().__init__(board=board, 
+                         database=database, 
+                         number_of_sensors=number_of_sensors,
+                         descr=descr,
+                         sensor_parameters=sensor_parameters,
+                           **kwargs)
 
     def connect(self):
         """Open the connection to the sensor: we do nothing because connection already exists and is handle by the board object."""
