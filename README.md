@@ -11,17 +11,19 @@ A software package for automated monitoring of lab equipment, including time ser
 
 ## Architecture
 
-A central server gathers data from different sources, writes them into a database, hosts a graphic interface for visualization and can send automatic alert e-mails based on user-defined criteria.
+A central server (which runs on the SBC4 mini-computer) gathers data from different sources (sensors connected to an Arduino or Phidgets sensors), writes them into a database, hosts a graphic interface for visualization and can send automatic alert e-mails based on user-defined criteria.
 
 
 
 ## Currently supported interfaces
+Currently, the following sensors were developed:
+  * [Phidget](https://www.phidgets.com/) sensors among which [thermocouple module](https://www.phidgets.com/?tier=1&catid=107&pcid=87&srsltid=AfmBOoqE0RofYzJXlaJsIExe5Ua3yuo6_WfFnwQqtDnHt1VYG4GnHzBl), voltage input, current input;
+  * Analog channels, via the analog to digital channels (ADC) on the Arduino board;
+  * Humidity and temperature sensor AHT10 (connected to the Arduino board);
+  * Socket protocol to address scientific instruments such as oscilloscopes;
+  * Temperature sensor MAX31865;
+  * Magnetic field sensor QMC5883L;
 
-  * Serial (e.g. Pfeiffer TPG261)
-  * TCP/IP (e.g. Arduino Due)
-  * Analog [via ADC on Arduino Due] (e.g. Pfeiffer TPG300)
-  * SNMP (e.g. Eaton UPS)
-  * Phidgets (e.g. Thermocouple module)
 
 ## Setup
 

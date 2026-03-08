@@ -10,7 +10,9 @@
 '''
 Content of arduino_AHT10.py
 
-Implements the AHT10 sensor to dialog with the arduino. "h" command. See the arduino file in arduino_src/main to access the Arduino driver. 
+Implements the AHT10 sensor to dialog with the arduino.
+--> When queried with "h", the Arduino returns a string with the temperature and humidity values separated by a comma, e.g. "23.5,45.2". 
+See the arduino file in arduino_src/main to access the Arduino driver. 
 '''
 
 from expmonitor.classes.arduino import ArduinoMultiSensor

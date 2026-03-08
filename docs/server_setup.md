@@ -1,23 +1,25 @@
 # 1. Introduction to Experiment Monitoring Server Setup
-We explain how we set up the server on a SBC4 computer (like a Raspberry but from Phidgets). It is possible to use a old linux computer to do that (and it can be better to also view the database and not view it from an other computer). Not that in some commands, the sudo word is missing because the SBC4 has a minimal Debian OS.
+We explain how we set up the server on a SBC4 computer (like a Raspberry but from Phidgets company). It is possible to use a old linux computer to do that (and it can be better to also monitor the data in the lab and not view it from an other computer). Not that in most commands below, the sudo word is missing because the SBC4 has a minimal Debian OS (usr is sudo by default).
 
-Note that the installation can also follow the  [ original one given here](server_setup_iogs.md).
+Note that the installation can also follow the [original one given here but made for the Paris-Saclay University](server_setup_iogs.md).
+
 # 2. Install Python dependencies
-I first update `apt update` but the version is old so it does not really work. I will not be able to install the newest Grafana version. 
+I first update `apt update` but the version is old so it does not really work. I will not be able to install the newest Grafana version (we will thus work with Grafana 1.8). 
 Not that the following packages should be installed: 
 ```
 apt-get install -y python3 python3-pip python3-dev gcc make libusb-1.0-0-dev libatlas-base-dev libopenjp2-7 libtiff5 libsnmp-dev snmp-mibs-downloader
 ```
-but they were already installed on my computer. I thus only install the following ones
- ```
+but they were already installed on my minimal Debian computer. I thus only install the following ones
+```
 apt-get install python3-pip libusb-1.0-0-dev libatlas-base-dev libopenjp2-7 libtiff5 libsnmp-dev snmp-mibs-downloader
- ```
+```
 I then install git and configure it:
 ```
 apt install git
 git config --global user.email "_you_@_example.com_"
 git config --global user.name "_Your Name_"
-``` 
+```
+
 # 3. Installing Influx dB
 We now aim to install InfluxdB to store data. Because our architecture is old, we do not follow the current [documentation](https://docs.influxdata.com/influxdb/v1/introduction/install/?dl=oss&code_lang=sh&code_lines=6&has_placeholders=true&code_type=code&section=Installing%2520InfluxDB%2520OSS&first_line=%2523%2520influxdata-archive.key%2520GPG%2520fingerprint%253A) but we download another version for our Debian 11.7 with armv7l architecture (ARM 32-bit). 
 We need to install curl : `apt-get install -y curl libc6 libssl1.1 libpcre3`.
@@ -30,7 +32,7 @@ wget https://dl.influxdata.com/influxdb/releases/influxdb_1.8.10_armhf.deb
 # Install 
 dpkg -i influxdb_1.8.10_armhf.deb
 ```
-Configure influxDB to start during the boot 
+Configure influxDB to start during the boot
 ```
 systemctl enable influxdb
 ```
@@ -39,6 +41,7 @@ This command makes sure that Grafana is always turned on even after a reboot of 
 systemctl start influxdb
 influx --version
 ```
+
 # 4. Installing Grafana
 Here again we do not strictly follow [Grafana's web page installation procedure](https://grafana.com/docs/grafana/latest/setup-grafana/installation/debian/) but rather download directly the package.
 ```
