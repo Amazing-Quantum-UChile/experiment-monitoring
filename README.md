@@ -27,12 +27,13 @@ Currently, the following sensors were developed:
 
 ## Setup
 
-  * Before starting the Experiment Monitoring, you need to set up your server. For hardware requirements & the step-by-step server setup procedure, see `docs/server_setup.md`.
-  * ADC setup: See `src/expmonitor/classes/adc/adc_setup.md`. Only needed if you want to monitor analog signals.
-  * Working with existing interfaces:
-    - `src/expmonitor/config.py` is all you need to modify.
-  * Adding your own interfaces:
-    - Write a subclass that extends the abstract `Sensor` class defined in `src/expmonitor/classes/sensor.py` to drive your sensor/equipment and instantiate it in `src/expmonitor/config.py`.
+  * Before starting the Experiment Monitoring, you need to set up your server. For hardware requirements & the step-by-step server setup procedure, see [`docs/server_setup.md`](docs/server_setup.md).
+  * If you want to work with existing interfaces, you need to:
+    * Install the upload the Arduino code on your Arduino. See [`src/expmonitor/classes/arduino.md`](src/expmonitor/classes/arduino.md).
+    * Config your setup in the [`src/expmonitor/config.py`](src/expmonitor/config.py).
+  * If you want to add a new sensor and write your own interfaces:
+    * Write a subclass that extends the abstract `Sensor` class defined in [`src/expmonitor/classes/sensor.py`](src/expmonitor/classes/sensor.py) to drive your sensor/equipment and instantiate it in `src/expmonitor/config.py`. See examples in the `src/expmonitor/classes` folder. If your sensor performs more than one measurement, use the `MultiSensor` class.  
+  
 
 ## Guide to the repository structure:
 
@@ -49,3 +50,5 @@ Currently, the following sensors were developed:
     python3 /mnt/code/experiment-monitoring/src/expmonitor/exec.py t v <i>5</i>
     </pre>
     Note that the argument after the script filepath sets the number of executions of the loop. The t and v flags enable timing and exception traceback to stdout.
+
+![Experiment Monitoring UML](docs/uml_diagram.png)

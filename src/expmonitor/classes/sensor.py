@@ -28,19 +28,19 @@ class AbstractSensor(ABC):
 
     def __init__(
         self,
-        database,
-        descr="sensor_measurement_name",
-        location="Somewhere in the lab",
-        unit="°C",
-        category="temperature",
-        sensor_type="k-type thermocouple",
-        conversion_fctn=lambda t: t,
-        num_prec=None,
-        save_raw=False,
-        format_str="f",
-        value_limit=(-np.inf, np.inf),
-        save_to_database=True,
-        is_dummy=False
+database,
+descr="sensor_measurement_name",
+location="Somewhere in the lab",
+unit="°C",
+category="temperature",
+sensor_type="k-type thermocouple",
+conversion_fctn=lambda t: t,
+num_prec=None,
+save_raw=False,
+format_str="f",
+value_limit=(-np.inf, np.inf),
+save_to_database=True,
+is_dummy=False
     ):
         """Abstract class for the Sensor method.
 

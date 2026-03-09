@@ -1,0 +1,1475 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="250mm"
+   height="275mm"
+   viewBox="0 0 250 275"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.4.2 (ebf0e940, 2025-05-08)"
+   sodipodi:docname="uml_diagram.svg"
+   inkscape:export-filename="uml_diagram.png"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     inkscape:zoom="0.61703828"
+     inkscape:cx="494.29672"
+     inkscape:cy="627.18961"
+     inkscape:window-width="1728"
+     inkscape:window-height="987"
+     inkscape:window-x="0"
+     inkscape:window-y="38"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs1">
+    <rect
+       x="391.83188"
+       y="768.64581"
+       width="30.035892"
+       height="21.844284"
+       id="rect88" />
+    <rect
+       x="391.73544"
+       y="795.46277"
+       width="109.25954"
+       height="187.87312"
+       id="rect42" />
+    <rect
+       x="286.05664"
+       y="272.10266"
+       width="129.39146"
+       height="36.1535"
+       id="rect28" />
+    <marker
+       style="overflow:visible"
+       id="Diamond"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Diamond"
+       markerWidth="1"
+       markerHeight="1"
+       viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         transform="scale(0.45)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:none"
+         d="M 0,-7.0710768 -7.0710894,0 0,7.0710589 7.0710462,0 Z"
+         id="path28" />
+    </marker>
+    <rect
+       x="452.43658"
+       y="612.26471"
+       width="238.51276"
+       height="184.41708"
+       id="rect24" />
+    <marker
+       style="overflow:visible"
+       id="Triangle"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="Triangle arrow"
+       markerWidth="1"
+       markerHeight="1"
+       viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         transform="scale(0.5)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path135" />
+    </marker>
+    <rect
+       x="410.81616"
+       y="281.75879"
+       width="114.27979"
+       height="212.79686"
+       id="rect19" />
+    <rect
+       x="43.279896"
+       y="78.69072"
+       width="502.72128"
+       height="530.15192"
+       id="rect1" />
+    <rect
+       x="43.279896"
+       y="78.69072"
+       width="245.79553"
+       height="28.603636"
+       id="rect3" />
+    <rect
+       x="43.279896"
+       y="78.69072"
+       width="245.79553"
+       height="28.603636"
+       id="rect3-3" />
+    <rect
+       x="43.279896"
+       y="78.69072"
+       width="245.79553"
+       height="28.603636"
+       id="rect12" />
+    <rect
+       x="43.279896"
+       y="78.69072"
+       width="243.45766"
+       height="283.08752"
+       id="rect18" />
+    <rect
+       x="43.279896"
+       y="78.69072"
+       width="245.79553"
+       height="28.603636"
+       id="rect3-3-1" />
+    <rect
+       x="43.279896"
+       y="78.69072"
+       width="245.79553"
+       height="28.603636"
+       id="rect23" />
+    <rect
+       x="43.279896"
+       y="78.69072"
+       width="168.08762"
+       height="35.710625"
+       id="rect31" />
+    <rect
+       x="43.279896"
+       y="78.69072"
+       width="245.79553"
+       height="28.603636"
+       id="rect39" />
+    <rect
+       x="43.279896"
+       y="78.69072"
+       width="142.5112"
+       height="44.949802"
+       id="rect40" />
+    <rect
+       x="43.279896"
+       y="78.69072"
+       width="168.08762"
+       height="35.710625"
+       id="rect41" />
+    <rect
+       x="43.279896"
+       y="78.69072"
+       width="245.79553"
+       height="28.603636"
+       id="rect47" />
+    <rect
+       x="43.279896"
+       y="78.69072"
+       width="142.5112"
+       height="44.949802"
+       id="rect48" />
+    <rect
+       x="43.279896"
+       y="78.69072"
+       width="158.21642"
+       height="169.64317"
+       id="rect55" />
+    <rect
+       x="43.279896"
+       y="78.69072"
+       width="245.79553"
+       height="28.603636"
+       id="rect56" />
+    <rect
+       x="43.279896"
+       y="78.69072"
+       width="202.6469"
+       height="30.661015"
+       id="rect63" />
+    <rect
+       x="452.43658"
+       y="612.26471"
+       width="246.29504"
+       height="236.66959"
+       id="rect66" />
+    <rect
+       x="43.279896"
+       y="78.69072"
+       width="257.23337"
+       height="161.87216"
+       id="rect77" />
+    <rect
+       x="43.279896"
+       y="78.69072"
+       width="245.79553"
+       height="28.603636"
+       id="rect86" />
+    <rect
+       x="43.279896"
+       y="78.69072"
+       width="216.23567"
+       height="189.66818"
+       id="rect87" />
+    <rect
+       x="43.279896"
+       y="78.69072"
+       width="143.87646"
+       height="70.889885"
+       id="rect95" />
+    <rect
+       x="43.279896"
+       y="78.69072"
+       width="245.79553"
+       height="28.603636"
+       id="rect100" />
+    <rect
+       x="43.279896"
+       y="78.69072"
+       width="219.14314"
+       height="99.50135"
+       id="rect101" />
+    <rect
+       x="43.279896"
+       y="78.69072"
+       width="143.87646"
+       height="70.889885"
+       id="rect102" />
+    <rect
+       x="43.279896"
+       y="78.69072"
+       width="250.87103"
+       height="24.021418"
+       id="rect105" />
+    <rect
+       x="43.279896"
+       y="78.69072"
+       width="250.87103"
+       height="24.021418"
+       id="rect106" />
+    <rect
+       x="43.279896"
+       y="78.69072"
+       width="250.87103"
+       height="24.021418"
+       id="rect107" />
+    <rect
+       x="43.279896"
+       y="78.69072"
+       width="250.87103"
+       height="24.021418"
+       id="rect108" />
+    <rect
+       x="43.279896"
+       y="78.69072"
+       width="250.87103"
+       height="24.021418"
+       id="rect109" />
+    <rect
+       x="43.279896"
+       y="78.69072"
+       width="250.87103"
+       height="24.021418"
+       id="rect110" />
+    <rect
+       x="43.279896"
+       y="78.69072"
+       width="250.87103"
+       height="24.021418"
+       id="rect111" />
+    <rect
+       x="43.279896"
+       y="78.69072"
+       width="250.87103"
+       height="24.021418"
+       id="rect112" />
+    <rect
+       x="43.279896"
+       y="78.69072"
+       width="250.87103"
+       height="24.021418"
+       id="rect113" />
+    <rect
+       x="43.279896"
+       y="78.69072"
+       width="250.87103"
+       height="24.021418"
+       id="rect114" />
+    <rect
+       x="43.279896"
+       y="78.69072"
+       width="250.87103"
+       height="24.021418"
+       id="rect115" />
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <rect
+       style="fill:#ededed;fill-opacity:1;stroke:#371601;stroke-width:0.4;stroke-miterlimit:1;stroke-opacity:1"
+       id="rect81"
+       width="66.827492"
+       height="35.818237"
+       x="101.88409"
+       y="4.3720703" />
+    <path
+       style="fill:#d0d0fe;fill-opacity:1;stroke:#888888;stroke-width:0.6;stroke-miterlimit:1;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Triangle)"
+       d="M 113.43121,122.34373 H 75.464205"
+       id="path19"
+       sodipodi:nodetypes="cc" />
+    <rect
+       style="fill:#fee3d0;fill-opacity:1;stroke:#371601;stroke-width:0.4;stroke-miterlimit:1;stroke-opacity:1"
+       id="rect2"
+       width="66.827492"
+       height="141.24884"
+       x="6.2460756"
+       y="68.752739" />
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,-3.7712393,55.177992)"
+       id="text1"
+       style="font-size:13.3333px;line-height:1.4;font-family:Arial;-inkscape-font-specification:Arial;text-align:start;writing-mode:lr-tb;direction:ltr;white-space:pre;shape-inside:url(#rect1);display:inline;fill:none;stroke-width:1.51181;stroke-miterlimit:1"
+       x="-1336.3185"
+       y="0"><tspan
+         x="43.279297"
+         y="91.701432"
+         id="tspan16"><tspan
+           style="font-style:italic;font-weight:bold"
+           id="tspan9">Properties</tspan><tspan
+           style="fill:#000000"
+           id="tspan10">
+</tspan></tspan><tspan
+         x="43.279297"
+         y="110.36805"
+         id="tspan20"><tspan
+           style="fill:#000000"
+           id="tspan17">database,
+</tspan></tspan><tspan
+         x="43.279297"
+         y="129.03467"
+         id="tspan27"><tspan
+           style="fill:#000000"
+           id="tspan21">descr=&quot;sensor_measurement_name&quot;,
+</tspan></tspan><tspan
+         x="43.279297"
+         y="147.70128"
+         id="tspan29"><tspan
+           style="fill:#000000"
+           id="tspan28">location=&quot;Somewhere in the lab&quot;,
+</tspan></tspan><tspan
+         x="43.279297"
+         y="166.36791"
+         id="tspan31"><tspan
+           style="fill:#000000"
+           id="tspan30">unit=&quot;°C&quot;,
+</tspan></tspan><tspan
+         x="43.279297"
+         y="185.03453"
+         id="tspan36"><tspan
+           style="fill:#000000"
+           id="tspan32">category=&quot;temperature&quot;,
+</tspan></tspan><tspan
+         x="43.279297"
+         y="203.70116"
+         id="tspan39"><tspan
+           style="fill:#000000"
+           id="tspan37">sensor_type=&quot;k-type thermocouple&quot;,
+</tspan></tspan><tspan
+         x="43.279297"
+         y="222.36778"
+         id="tspan41"><tspan
+           style="fill:#000000"
+           id="tspan40">conversion_fctn=lambda t: t,
+</tspan></tspan><tspan
+         x="43.279297"
+         y="241.03441"
+         id="tspan48"><tspan
+           style="fill:#000000"
+           id="tspan43">_num_prec=None,
+</tspan></tspan><tspan
+         x="43.279297"
+         y="259.70104"
+         id="tspan53"><tspan
+           style="fill:#000000"
+           id="tspan52">_save_raw=False,
+</tspan></tspan><tspan
+         x="43.279297"
+         y="278.36766"
+         id="tspan57"><tspan
+           style="fill:#000000"
+           id="tspan56">_format_str=&quot;f&quot;,
+</tspan></tspan><tspan
+         x="43.279297"
+         y="297.03429"
+         id="tspan59"><tspan
+           style="fill:#000000"
+           id="tspan58">value_limit=(-np.inf, np.inf),
+</tspan></tspan><tspan
+         x="43.279297"
+         y="315.70091"
+         id="tspan61"><tspan
+           style="fill:#000000"
+           id="tspan60">save_to_database=True,
+</tspan></tspan><tspan
+         x="43.279297"
+         y="334.36754"
+         id="tspan64"><tspan
+           style="fill:#000000"
+           id="tspan62">is_dummy=False
+</tspan></tspan><tspan
+         x="43.279297"
+         y="353.03417"
+         id="tspan70"><tspan
+           style="fill:#000000"
+           id="tspan69">
+</tspan></tspan><tspan
+         x="43.279297"
+         y="371.70079"
+         id="tspan73"><tspan
+           style="font-style:italic;font-weight:bold"
+           id="tspan71">Private methods</tspan><tspan
+           style="fill:#000000"
+           id="tspan72">
+</tspan></tspan><tspan
+         x="43.279297"
+         y="390.36742"
+         id="tspan75"><tspan
+           style="fill:#000000"
+           id="tspan74">num_prec()
+</tspan></tspan><tspan
+         x="43.279297"
+         y="409.03404"
+         id="tspan80"><tspan
+           style="fill:#000000"
+           id="tspan76">format_str()
+</tspan></tspan><tspan
+         x="43.279297"
+         y="427.70067"
+         id="tspan82"><tspan
+           style="fill:#000000"
+           id="tspan81">save_raw()
+</tspan></tspan><tspan
+         x="43.279297"
+         y="446.3673"
+         id="tspan90"><tspan
+           style="font-style:italic;font-weight:bold"
+           id="tspan87">Public methods</tspan><tspan
+           style="fill:#000000"
+           id="tspan89">
+</tspan></tspan><tspan
+         x="43.279297"
+         y="465.03392"
+         id="tspan93"><tspan
+           style="fill:#000000"
+           id="tspan91">measure()
+</tspan></tspan><tspan
+         x="43.279297"
+         y="483.70055"
+         id="tspan96"><tspan
+           style="fill:#000000"
+           id="tspan94">to_db()
+</tspan></tspan><tspan
+         x="43.279297"
+         y="502.36717"
+         id="tspan103"><tspan
+           style="fill:#000000"
+           id="tspan99">filter_spikes()
+</tspan></tspan><tspan
+         x="43.279297"
+         y="521.06619"
+         id="tspan117"><tspan
+           style="font-style:italic;font-weight:bold"
+           id="tspan104">Abstract method</tspan><tspan
+           style="fill:#000000"
+           id="tspan115"> </tspan><tspan
+           style="font-style:italic"
+           id="tspan116">(to define in daughter)
+</tspan></tspan><tspan
+         x="43.279297"
+         y="539.7328"
+         id="tspan119"><tspan
+           style="fill:#000000"
+           id="tspan118">connect()
+</tspan></tspan><tspan
+         x="43.279297"
+         y="558.39943"
+         id="tspan121"><tspan
+           style="fill:#000000"
+           id="tspan120">disconnect()
+</tspan></tspan><tspan
+         x="43.279297"
+         y="577.06606"
+         id="tspan123"><tspan
+           style="fill:#000000"
+           id="tspan122">rcv_vals()</tspan></tspan></text>
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,-4.6516321,48.760919)"
+       id="text2"
+       style="font-size:13.3333px;line-height:1.4;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;writing-mode:lr-tb;direction:ltr;white-space:pre;shape-inside:url(#rect3);display:inline;fill:none;stroke-width:1.51181;stroke-miterlimit:1"
+       x="-1162.5656"
+       y="0"><tspan
+         x="116.53268"
+         y="91.701432"
+         id="tspan125"><tspan
+           style="font-weight:bold;fill:#000000"
+           id="tspan124">AbstractSensor</tspan></tspan></text>
+    <path
+       style="fill:#fee3d0;fill-opacity:1;stroke:#371601;stroke-width:0.4;stroke-miterlimit:1;stroke-opacity:1"
+       d="M 6.1860258,74.625773 H 73.125523"
+       id="path8" />
+    <path
+       style="fill:#fee3d0;fill-opacity:1;stroke:#371601;stroke-width:0.4;stroke-miterlimit:1;stroke-opacity:1"
+       d="M 6.1860258,147.6573 H 73.125523"
+       id="path9" />
+    <g
+       id="g9"
+       transform="translate(-11.641668,93.287505)">
+      <rect
+         style="fill:#d0d0fe;fill-opacity:1;stroke:#020230;stroke-width:0.4;stroke-miterlimit:1;stroke-opacity:1"
+         id="rect2-7"
+         width="66.827492"
+         height="15.014342"
+         x="113.63979"
+         y="22.032816" />
+      <path
+         style="fill:#fee3d0;fill-opacity:1;stroke:#020230;stroke-width:0.4;stroke-miterlimit:1;stroke-opacity:1"
+         d="m 113.57974,27.905847 h 66.93949"
+         id="path8-7" />
+      <path
+         style="fill:#fee3d0;fill-opacity:1;stroke:#020230;stroke-width:0.4;stroke-miterlimit:1;stroke-opacity:1"
+         d="m 113.68702,33.406128 h 66.93949"
+         id="path9-9" />
+      <text
+         xml:space="preserve"
+         transform="matrix(0.26458333,0,0,0.26458333,100.72494,1.7556406)"
+         id="text2-0"
+         style="font-size:13.3333px;line-height:1.4;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;writing-mode:lr-tb;direction:ltr;white-space:pre;shape-inside:url(#rect3-3);display:inline;fill:none;stroke-width:1.51181;stroke-miterlimit:1"
+         x="-1162.5656"
+         y="0"><tspan
+           x="143.57688"
+           y="91.701432"
+           id="tspan127"><tspan
+             style="font-weight:bold;fill:#000000"
+             id="tspan126">Sensor</tspan></tspan></text>
+    </g>
+    <rect
+       style="fill:#eed0fe;fill-opacity:1;stroke:#020230;stroke-width:0.4;stroke-miterlimit:1;stroke-opacity:1"
+       id="rect9"
+       width="67.088142"
+       height="71.700371"
+       x="101.73748"
+       y="151.4566" />
+    <path
+       style="fill:#fee3d0;fill-opacity:1;stroke:#020230;stroke-width:0.4;stroke-miterlimit:1;stroke-opacity:1"
+       d="m 101.67734,157.32963 h 66.93949"
+       id="path10" />
+    <path
+       style="fill:#fee3d0;fill-opacity:1;stroke:#020230;stroke-width:0.4;stroke-miterlimit:1;stroke-opacity:1"
+       d="m 101.78462,179.3221 h 66.93949"
+       id="path11" />
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,88.822606,131.17942)"
+       id="text12"
+       style="font-size:13.3333px;line-height:1.4;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;writing-mode:lr-tb;direction:ltr;white-space:pre;shape-inside:url(#rect12);display:inline;fill:none;stroke-width:1.51181;stroke-miterlimit:1"
+       x="-1162.5656"
+       y="0"><tspan
+         x="128.02679"
+         y="91.701432"
+         id="tspan129"><tspan
+           style="font-weight:bold;fill:#000000"
+           id="tspan128">MultiSensor</tspan></tspan></text>
+    <path
+       style="fill:#d0d0fe;fill-opacity:1;stroke:#888888;stroke-width:0.6;stroke-miterlimit:1;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Triangle)"
+       d="M 132.48608,150.52483 V 132.72589"
+       id="path20"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="fill:#d0d0fe;fill-opacity:1;stroke:#888888;stroke-width:0.6;stroke-miterlimit:1;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Triangle)"
+       d="M 113.43121,74.482631 H 75.464205"
+       id="path23"
+       sodipodi:nodetypes="cc" />
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,91.978878,136.67416)"
+       id="text18"
+       style="font-size:13.3333px;line-height:1.4;font-family:Arial;-inkscape-font-specification:Arial;text-align:start;writing-mode:lr-tb;direction:ltr;white-space:pre;shape-inside:url(#rect18);display:inline;fill:none;stroke-width:1.51181;stroke-miterlimit:1"
+       x="-1336.3185"
+       y="0"><tspan
+         x="43.279297"
+         y="91.701432"
+         id="tspan132"><tspan
+           style="font-style:italic;font-weight:bold"
+           id="tspan130">Properties</tspan><tspan
+           style="fill:#000000"
+           id="tspan131">
+</tspan></tspan><tspan
+         x="43.279297"
+         y="110.36805"
+         id="tspan134"><tspan
+           style="fill:#000000"
+           id="tspan133">number_of_sensors (int)
+</tspan></tspan><tspan
+         x="43.279297"
+         y="129.03467"
+         id="tspan136"><tspan
+           style="fill:#000000"
+           id="tspan135">sensor_parameters (dict)
+</tspan></tspan><tspan
+         x="43.279297"
+         y="147.70128"
+         id="tspan138"><tspan
+           style="fill:#000000"
+           id="tspan137">subsensors (type: list of SubSensors)
+</tspan></tspan><tspan
+         x="43.279297"
+         y="166.36791"
+         id="tspan140"><tspan
+           style="fill:#000000"
+           id="tspan139">
+</tspan></tspan><tspan
+         x="43.279297"
+         y="185.03453"
+         id="tspan143"><tspan
+           style="font-style:italic;font-weight:bold"
+           id="tspan141">Private methods</tspan><tspan
+           style="fill:#000000"
+           id="tspan142">
+</tspan></tspan><tspan
+         x="43.279297"
+         y="203.70116"
+         id="tspan145"><tspan
+           style="fill:#000000"
+           id="tspan144">default_subsensor()
+</tspan></tspan><tspan
+         x="43.279297"
+         y="222.36778"
+         id="tspan147"><tspan
+           style="fill:#000000"
+           id="tspan146">setup_subsensors()
+</tspan></tspan><tspan
+         x="43.279297"
+         y="241.03441"
+         id="tspan149"><tspan
+           style="fill:#000000"
+           id="tspan148">update_subsensors()
+</tspan></tspan><tspan
+         x="43.279297"
+         y="259.70104"
+         id="tspan152"><tspan
+           style="font-style:italic;font-weight:bold"
+           id="tspan150">Public methods redefined</tspan><tspan
+           style="fill:#000000"
+           id="tspan151">
+</tspan></tspan><tspan
+         x="43.279297"
+         y="278.36766"
+         id="tspan154"><tspan
+           style="fill:#000000"
+           id="tspan153">measure()
+</tspan></tspan><tspan
+         x="43.279297"
+         y="297.03429"
+         id="tspan156"><tspan
+           style="fill:#000000"
+           id="tspan155">to_db()
+</tspan></tspan><tspan
+         x="43.279297"
+         y="315.70091"
+         id="tspan158"><tspan
+           style="fill:#000000"
+           id="tspan157">filter_spikes()
+</tspan></tspan></text>
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,0,51.055527)"
+       id="text19"
+       style="font-size:5.33333px;line-height:1.4;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;writing-mode:lr-tb;direction:ltr;white-space:pre;shape-inside:url(#rect19);display:inline;fill:#d0d0fe;fill-opacity:1;stroke:#020230;stroke-width:1.51181;stroke-miterlimit:1;stroke-opacity:1" />
+    <g
+       id="g23"
+       transform="translate(-11.641668,45.426411)">
+      <rect
+         style="fill:#d0e5fe;fill-opacity:1;stroke:#020230;stroke-width:0.4;stroke-miterlimit:1;stroke-opacity:1"
+         id="rect20"
+         width="66.827492"
+         height="42.013515"
+         x="113.63979"
+         y="22.032816" />
+      <path
+         style="fill:#fee3d0;fill-opacity:1;stroke:#020230;stroke-width:0.4;stroke-miterlimit:1;stroke-opacity:1"
+         d="m 113.57974,27.905847 h 66.93949"
+         id="path21"
+         sodipodi:nodetypes="cc" />
+      <path
+         style="fill:#fee3d0;fill-opacity:1;stroke:#020230;stroke-width:0.4;stroke-miterlimit:1;stroke-opacity:1"
+         d="m 113.68702,32.347794 h 66.93949"
+         id="path22" />
+      <text
+         xml:space="preserve"
+         transform="matrix(0.26458333,0,0,0.26458333,100.72494,1.7556406)"
+         id="text23"
+         style="font-size:13.3333px;line-height:1.4;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;writing-mode:lr-tb;direction:ltr;white-space:pre;shape-inside:url(#rect23);display:inline;fill:none;stroke-width:1.51181;stroke-miterlimit:1"
+         x="-1162.5656"
+         y="0"><tspan
+           x="130.98577"
+           y="91.701432"
+           id="tspan160"><tspan
+             style="font-weight:bold;fill:#000000"
+             id="tspan159">SubSensor</tspan></tspan></text>
+    </g>
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,-16.195748,-83.063623)"
+       id="text24"
+       style="font-size:13.3333px;line-height:1.4;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;writing-mode:lr-tb;direction:ltr;white-space:pre;shape-inside:url(#rect24);display:inline;fill:#eed0fe;fill-opacity:1;stroke:#2d0230;stroke-width:2.26772;stroke-miterlimit:1;stroke-dasharray:none;stroke-opacity:1"
+       x="-36.083893"
+       y="0"><tspan
+         x="452.4375"
+         y="625.27565"
+         id="tspan163"><tspan
+           style="font-style:italic;font-weight:bold"
+           id="tspan161">Private methods</tspan><tspan
+           style="text-align:start;text-anchor:start;fill:#000000;stroke:none"
+           id="tspan162">
+</tspan></tspan><tspan
+         x="452.4375"
+         y="643.94228"
+         id="tspan165"><tspan
+           style="text-align:start;text-anchor:start;fill:#000000;stroke:none"
+           id="tspan164">connect()
+</tspan></tspan><tspan
+         x="452.4375"
+         y="662.6089"
+         id="tspan167"><tspan
+           style="text-align:start;text-anchor:start;fill:#000000;stroke:none"
+           id="tspan166">disconnect()
+</tspan></tspan><tspan
+         x="452.4375"
+         y="681.27553"
+         id="tspan169"><tspan
+           style="text-align:start;text-anchor:start;fill:#000000;stroke:none"
+           id="tspan168">rcv_vals()
+</tspan></tspan><tspan
+         x="452.4375"
+         y="699.94215"
+         id="tspan171"><tspan
+           style="font-style:italic;font-weight:bold"
+           id="tspan170">Public methods
+</tspan></tspan><tspan
+         x="452.4375"
+         y="718.60878"
+         id="tspan173"><tspan
+           style="text-align:start;text-anchor:start;fill:#000000;stroke:none"
+           id="tspan172">set_vals()</tspan></tspan></text>
+    <path
+       style="fill:none;fill-opacity:1;stroke:#888888;stroke-width:0.600001;stroke-miterlimit:1;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#Diamond)"
+       d="m 170.71718,175.76866 h 6.42747 V 93.347812 h -8.30774"
+       id="path27"
+       sodipodi:nodetypes="cccc" />
+    <rect
+       style="fill:#fed0ed;fill-opacity:1;stroke:#020230;stroke-width:0.4;stroke-miterlimit:1;stroke-opacity:1"
+       id="rect32"
+       width="67.088142"
+       height="19.171949"
+       x="101.73748"
+       y="238.88293" />
+    <path
+       style="fill:#fee3d0;fill-opacity:1;stroke:#020230;stroke-width:0.4;stroke-miterlimit:1;stroke-opacity:1"
+       d="m 101.67734,244.75587 h 66.93949"
+       id="path32" />
+    <path
+       style="fill:#fee3d0;fill-opacity:1;stroke:#020230;stroke-width:0.4;stroke-miterlimit:1;stroke-opacity:1"
+       d="m 101.78462,255.76625 h 66.93949"
+       id="path33" />
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,88.822606,218.60566)"
+       id="text34"
+       style="font-size:13.3333px;line-height:1.4;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;writing-mode:lr-tb;direction:ltr;white-space:pre;shape-inside:url(#rect39);display:inline;fill:none;stroke-width:1.51181;stroke-miterlimit:1"
+       x="-1162.5656"
+       y="0"><tspan
+         x="102.47672"
+         y="91.701432"
+         id="tspan175"><tspan
+           style="font-weight:bold;fill:#000000"
+           id="tspan174">ArduinoMultiSensor</tspan></tspan></text>
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,91.978878,224.1004)"
+       id="text38"
+       style="font-size:13.3333px;line-height:1.4;font-family:Arial;-inkscape-font-specification:Arial;text-align:start;writing-mode:lr-tb;direction:ltr;white-space:pre;shape-inside:url(#rect40);display:inline;fill:none;stroke-width:1.51181;stroke-miterlimit:1"
+       x="-1336.3185"
+       y="0"><tspan
+         x="43.279297"
+         y="91.701432"
+         id="tspan178"><tspan
+           style="font-style:italic;font-weight:bold"
+           id="tspan176">Properties</tspan><tspan
+           style="fill:#000000"
+           id="tspan177">
+</tspan></tspan><tspan
+         x="43.279297"
+         y="110.36805"
+         id="tspan180"><tspan
+           style="fill:#000000"
+           id="tspan179">board (type: Arduino)</tspan></tspan></text>
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,0,51.055527)"
+       id="text41"
+       style="font-size:9.33333px;line-height:1.4;font-family:Arial;-inkscape-font-specification:Arial;text-align:end;writing-mode:lr-tb;direction:ltr;white-space:pre;shape-inside:url(#rect42);display:inline;fill:none;fill-opacity:1;stroke:#021630;stroke-width:2.26772;stroke-miterlimit:1;stroke-dasharray:none;stroke-opacity:1" />
+    <path
+       style="fill:#d0d0fe;fill-opacity:1;stroke:#888888;stroke-width:0.6;stroke-miterlimit:1;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Triangle)"
+       d="M 132.48608,238.17436 V 226.0762"
+       id="path42"
+       sodipodi:nodetypes="cc" />
+    <rect
+       style="fill:#fed0e4;fill-opacity:1;stroke:#020230;stroke-width:0.4;stroke-miterlimit:1;stroke-opacity:1"
+       id="rect43"
+       width="67.088142"
+       height="19.171949"
+       x="182.49771"
+       y="101.84135" />
+    <path
+       style="fill:#fee3d0;fill-opacity:1;stroke:#020230;stroke-width:0.4;stroke-miterlimit:1;stroke-opacity:1"
+       d="m 182.43758,107.71429 h 66.93949"
+       id="path43" />
+    <path
+       style="fill:#fee3d0;fill-opacity:1;stroke:#020230;stroke-width:0.4;stroke-miterlimit:1;stroke-opacity:1"
+       d="m 182.54486,118.72467 h 66.93949"
+       id="path44" />
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,169.58285,81.564074)"
+       id="text45"
+       style="font-size:13.3333px;line-height:1.4;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;writing-mode:lr-tb;direction:ltr;white-space:pre;shape-inside:url(#rect47);display:inline;fill:none;stroke-width:1.51181;stroke-miterlimit:1"
+       x="-1162.5656"
+       y="0"><tspan
+         x="118.02681"
+         y="91.701432"
+         id="tspan182"><tspan
+           style="font-weight:bold;fill:#000000"
+           id="tspan181">ArduinoSensor</tspan></tspan></text>
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,172.73912,87.058814)"
+       id="text47"
+       style="font-size:13.3333px;line-height:1.4;font-family:Arial;-inkscape-font-specification:Arial;text-align:start;writing-mode:lr-tb;direction:ltr;white-space:pre;shape-inside:url(#rect48);display:inline;fill:none;stroke-width:1.51181;stroke-miterlimit:1"
+       x="-1336.3185"
+       y="0"><tspan
+         x="43.279297"
+         y="91.701432"
+         id="tspan185"><tspan
+           style="font-style:italic;font-weight:bold"
+           id="tspan183">Properties</tspan><tspan
+           style="fill:#000000"
+           id="tspan184">
+</tspan></tspan><tspan
+         x="43.279297"
+         y="110.36805"
+         id="tspan187"><tspan
+           style="fill:#000000"
+           id="tspan186">board (type: Arduino)
+</tspan></tspan></text>
+    <rect
+       style="fill:#fef8d0;fill-opacity:1;stroke:#371601;stroke-width:0.4;stroke-miterlimit:1;stroke-opacity:1"
+       id="rect49"
+       width="66.827492"
+       height="53.664356"
+       x="6.2460756"
+       y="217.8598" />
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,-3.7712393,204.28506)"
+       id="text54"
+       style="font-size:13.3333px;line-height:1.4;font-family:Arial;-inkscape-font-specification:Arial;text-align:start;writing-mode:lr-tb;direction:ltr;white-space:pre;shape-inside:url(#rect55);display:inline;fill:none;stroke-width:1.51181;stroke-miterlimit:1"
+       x="-1336.3185"
+       y="0"><tspan
+         x="43.279297"
+         y="91.701432"
+         id="tspan190"><tspan
+           style="font-style:italic;font-weight:bold"
+           id="tspan188">Properties</tspan><tspan
+           style="fill:#000000"
+           id="tspan189">
+</tspan></tspan><tspan
+         x="43.279297"
+         y="110.36805"
+         id="tspan192"><tspan
+           style="fill:#000000"
+           id="tspan191">port, 
+</tspan></tspan><tspan
+         x="43.279297"
+         y="129.03467"
+         id="tspan194"><tspan
+           style="fill:#000000"
+           id="tspan193">baudrate=9600, 
+</tspan></tspan><tspan
+         x="43.279297"
+         y="147.70128"
+         id="tspan196"><tspan
+           style="fill:#000000"
+           id="tspan195">is_dummy=False
+</tspan></tspan><tspan
+         x="43.279297"
+         y="166.36791"
+         id="tspan198"><tspan
+           style="fill:#000000"
+           id="tspan197">
+</tspan></tspan><tspan
+         x="43.279297"
+         y="185.03453"
+         id="tspan201"><tspan
+           style="font-style:italic;font-weight:bold"
+           id="tspan199">Private methods</tspan><tspan
+           style="fill:#000000"
+           id="tspan200">
+</tspan></tspan><tspan
+         x="43.279297"
+         y="203.70116"
+         id="tspan203"><tspan
+           style="fill:#000000"
+           id="tspan202">connect_device()
+</tspan></tspan><tspan
+         x="43.279297"
+         y="222.36778"
+         id="tspan206"><tspan
+           style="font-style:italic;font-weight:bold"
+           id="tspan204">Public methods</tspan><tspan
+           style="fill:#000000"
+           id="tspan205">
+</tspan></tspan><tspan
+         x="43.279297"
+         y="241.03441"
+         id="tspan208"><tspan
+           style="fill:#000000"
+           id="tspan207">query(cmd, timeout=.5)
+</tspan></tspan></text>
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,-4.6516321,197.86799)"
+       id="text55"
+       style="font-size:13.3333px;line-height:1.4;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;writing-mode:lr-tb;direction:ltr;white-space:pre;shape-inside:url(#rect56);display:inline;fill:none;stroke-width:1.51181;stroke-miterlimit:1"
+       x="-1162.5656"
+       y="0"><tspan
+         x="140.62767"
+         y="91.701432"
+         id="tspan210"><tspan
+           style="font-weight:bold;fill:#000000"
+           id="tspan209">Arduino</tspan></tspan></text>
+    <path
+       style="fill:#fee3d0;fill-opacity:1;stroke:#371601;stroke-width:0.4;stroke-miterlimit:1;stroke-opacity:1"
+       d="M 6.1860258,223.69984 H 73.125523"
+       id="path56" />
+    <path
+       style="fill:#fee3d0;fill-opacity:1;stroke:#371601;stroke-width:0.4;stroke-miterlimit:1;stroke-opacity:1"
+       d="M 6.1860258,247.2827 H 73.125523"
+       id="path57" />
+    <path
+       style="fill:none;fill-opacity:1;stroke:#888888;stroke-width:0.600001;stroke-miterlimit:1;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#Diamond)"
+       d="M 100.32673,252.3046 H 93.899262 V 225.18428 H 73.028169"
+       id="path58"
+       sodipodi:nodetypes="cccc" />
+    <rect
+       style="fill:#e0fed5;fill-opacity:1;stroke:#371601;stroke-width:0.4;stroke-miterlimit:1;stroke-opacity:1"
+       id="rect58"
+       width="66.827492"
+       height="58.630974"
+       x="6.2460756"
+       y="4.3720703" />
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,-1.1634492,-15.423237)"
+       id="text63"
+       style="font-size:13.3333px;line-height:1.4;font-family:Arial;-inkscape-font-specification:Arial;text-align:start;writing-mode:lr-tb;direction:ltr;white-space:pre;shape-inside:url(#rect63);display:inline;fill:none;stroke-width:1.51181;stroke-miterlimit:1"
+       x="-1307.4026"
+       y="0"><tspan
+         x="114.95841"
+         y="91.701432"
+         id="tspan212"><tspan
+           style="font-weight:bold;text-align:center;text-anchor:middle;fill:#000000"
+           id="tspan211">Database</tspan></tspan></text>
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,-111.20682,-149.47523)"
+       id="text66"
+       style="font-size:13.3333px;line-height:1.4;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;writing-mode:lr-tb;direction:ltr;white-space:pre;shape-inside:url(#rect66);display:inline;fill:#eed0fe;fill-opacity:1;stroke:#2d0230;stroke-width:2.26772;stroke-miterlimit:1;stroke-dasharray:none;stroke-opacity:1"
+       x="-36.083893"
+       y="0"><tspan
+         x="452.4375"
+         y="625.27565"
+         id="tspan215"><tspan
+           style="font-style:italic;font-weight:bold"
+           id="tspan213">Properties</tspan><tspan
+           style="text-align:start;text-anchor:start;fill:#000000;stroke:none"
+           id="tspan214">
+</tspan></tspan><tspan
+         x="452.4375"
+         y="643.94228"
+         id="tspan217"><tspan
+           style="text-align:start;text-anchor:start;fill:#000000;stroke:none"
+           id="tspan216"> port, 
+</tspan></tspan><tspan
+         x="452.4375"
+         y="662.6089"
+         id="tspan219"><tspan
+           style="text-align:start;text-anchor:start;fill:#000000;stroke:none"
+           id="tspan218">name, 
+</tspan></tspan><tspan
+         x="452.4375"
+         y="681.27553"
+         id="tspan221"><tspan
+           style="text-align:start;text-anchor:start;fill:#000000;stroke:none"
+           id="tspan220">is_dummy=False, 
+</tspan></tspan><tspan
+         x="452.4375"
+         y="699.94215"
+         id="tspan223"><tspan
+           style="text-align:start;text-anchor:start;fill:#000000;stroke:none"
+           id="tspan222">max_logs=10
+</tspan></tspan><tspan
+         x="452.4375"
+         y="718.60878"
+         id="tspan225"><tspan
+           style="text-align:start;text-anchor:start;fill:#000000;stroke:none"
+           id="tspan224">client
+</tspan></tspan><tspan
+         x="452.4375"
+         y="737.27541"
+         id="tspan227"><tspan
+           style="text-align:start;text-anchor:start;fill:#000000;stroke:none"
+           id="tspan226">
+</tspan></tspan><tspan
+         x="452.4375"
+         y="755.94203"
+         id="tspan229"><tspan
+           style="font-style:italic;font-weight:bold"
+           id="tspan228">Public methods
+</tspan></tspan><tspan
+         x="452.4375"
+         y="774.60866"
+         id="tspan231">write(*args)<tspan
+   style="font-style:italic;font-weight:bold"
+   id="tspan230">
+</tspan></tspan><tspan
+         x="452.4375"
+         y="793.27528"
+         id="tspan233"><tspan
+           style="text-align:start;text-anchor:start;fill:#000000;stroke:none"
+           id="tspan232">store_log()
+</tspan></tspan></text>
+    <path
+       style="fill:#fee3d0;fill-opacity:1;stroke:#371601;stroke-width:0.4;stroke-miterlimit:1;stroke-opacity:1"
+       d="M 6.1860258,11.38311 H 73.125523"
+       id="path69" />
+    <path
+       style="fill:#fee3d0;fill-opacity:1;stroke:#371601;stroke-width:0.4;stroke-miterlimit:1;stroke-opacity:1"
+       d="M 6.1860258,44.033973 H 73.125523"
+       id="path70" />
+    <path
+       style="fill:none;fill-opacity:1;stroke:#888888;stroke-width:0.600001;stroke-miterlimit:1;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#Diamond)"
+       d="M 3.9594231,83.183167 H 1.7652884 l 0,-74.7586027 h 4.1601184"
+       id="path71"
+       sodipodi:nodetypes="cccc" />
+    <path
+       style="fill:#d0d0fe;fill-opacity:1;stroke:#888888;stroke-width:0.6;stroke-miterlimit:1;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Triangle)"
+       d="M 182.61016,119.16871 H 170.99703"
+       id="path72"
+       sodipodi:nodetypes="cc" />
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,91.475075,-15.985476)"
+       id="text77"
+       style="font-size:13.3333px;line-height:1.4;font-family:Arial;-inkscape-font-specification:Arial;text-align:start;writing-mode:lr-tb;direction:ltr;white-space:pre;shape-inside:url(#rect77);display:inline;fill:none;stroke-width:1.51181;stroke-miterlimit:1"
+       x="-1336.3185"
+       y="0"><tspan
+         x="43.279297"
+         y="91.701432"
+         id="tspan236"><tspan
+           style="font-weight:bold"
+           id="tspan234">config.py</tspan><tspan
+           style="fill:#000000"
+           id="tspan235">
+</tspan></tspan><tspan
+         x="43.279297"
+         y="110.36805"
+         id="tspan238"><tspan
+           style="fill:#000000"
+           id="tspan237">Define sensors and parrameters
+</tspan></tspan><tspan
+         x="43.279297"
+         y="129.03467"
+         id="tspan240"><tspan
+           style="fill:#000000"
+           id="tspan239">
+</tspan></tspan><tspan
+         x="43.279297"
+         y="147.70128"
+         id="tspan243"><tspan
+           style="font-weight:bold"
+           id="tspan241">exec.py</tspan><tspan
+           style="fill:#000000"
+           id="tspan242">
+</tspan></tspan><tspan
+         x="43.279297"
+         y="166.36791"
+         id="tspan245"><tspan
+           style="fill:#000000"
+           id="tspan244">load config, loop over all objects inheriting </tspan></tspan><tspan
+         x="43.279297"
+         y="185.03453"
+         id="tspan247"><tspan
+           style="fill:#000000"
+           id="tspan246">the Sensor class and call their method </tspan></tspan><tspan
+         x="43.279297"
+         y="203.70116"
+         id="tspan249"><tspan
+           style="fill:#000000"
+           id="tspan248">measure(), to_db() and filter_spikes() </tspan></tspan></text>
+    <path
+       style="fill:#d0d0fe;fill-opacity:1;stroke:#888888;stroke-width:0.6;stroke-miterlimit:1;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Triangle)"
+       d="M 182.61016,129.46438 H 170.99703"
+       id="path81"
+       sodipodi:nodetypes="cc" />
+    <rect
+       style="fill:#ededed;fill-opacity:1;stroke:#371601;stroke-width:0.4;stroke-miterlimit:1;stroke-opacity:1"
+       id="rect82"
+       width="66.827499"
+       height="52.434685"
+       x="182.45888"
+       y="127.47243" />
+    <path
+       style="fill:#fee3d0;fill-opacity:1;stroke:#020230;stroke-width:0.4;stroke-miterlimit:1;stroke-opacity:1"
+       d="m 182.43758,133.43157 h 66.93949"
+       id="path82" />
+    <path
+       style="fill:#fee3d0;fill-opacity:1;stroke:#020230;stroke-width:0.4;stroke-miterlimit:1;stroke-opacity:1"
+       d="m 182.54486,154.55631 h 66.93949"
+       id="path83" />
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,169.58285,107.28135)"
+       id="text84"
+       style="font-size:13.3333px;line-height:1.4;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;writing-mode:lr-tb;direction:ltr;white-space:pre;shape-inside:url(#rect86);display:inline;fill:none;stroke-width:1.51181;stroke-miterlimit:1"
+       x="-1162.5656"
+       y="0"><tspan
+         x="132.84774"
+         y="91.701432"
+         id="tspan251"><tspan
+           style="font-weight:bold;fill:#000000"
+           id="tspan250">PhidgetTC</tspan></tspan></text>
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,172.73912,112.77609)"
+       id="text86"
+       style="font-size:13.3333px;line-height:1.4;font-family:Arial;-inkscape-font-specification:Arial;text-align:start;writing-mode:lr-tb;direction:ltr;white-space:pre;shape-inside:url(#rect87);display:inline;fill:none;stroke-width:1.51181;stroke-miterlimit:1"
+       x="-1336.3185"
+       y="0"><tspan
+         x="43.279297"
+         y="91.701432"
+         id="tspan254"><tspan
+           style="font-style:italic;font-weight:bold"
+           id="tspan252">Properties</tspan><tspan
+           style="fill:#000000"
+           id="tspan253">
+</tspan></tspan><tspan
+         x="43.279297"
+         y="110.36805"
+         id="tspan256"><tspan
+           style="fill:#000000"
+           id="tspan255">hub_serial,
+</tspan></tspan><tspan
+         x="43.279297"
+         y="129.03467"
+         id="tspan258"><tspan
+           style="fill:#000000"
+           id="tspan257">hub_port, 
+</tspan></tspan><tspan
+         x="43.279297"
+         y="147.70128"
+         id="tspan260"><tspan
+           style="fill:#000000"
+           id="tspan259">hub_channel
+</tspan></tspan><tspan
+         x="43.279297"
+         y="166.36791"
+         id="tspan262"><tspan
+           style="fill:#000000"
+           id="tspan261">
+</tspan></tspan><tspan
+         x="43.279297"
+         y="185.03453"
+         id="tspan265"><tspan
+           style="font-style:italic;font-weight:bold"
+           id="tspan263">Private methods redefined</tspan><tspan
+           style="fill:#000000"
+           id="tspan264">
+</tspan></tspan><tspan
+         x="43.279297"
+         y="203.70116"
+         id="tspan267"><tspan
+           style="fill:#000000"
+           id="tspan266">connect()
+</tspan></tspan><tspan
+         x="43.279297"
+         y="222.36778"
+         id="tspan269"><tspan
+           style="fill:#000000"
+           id="tspan268">disconnect()
+</tspan></tspan><tspan
+         x="43.279297"
+         y="241.03441"
+         id="tspan271"><tspan
+           style="fill:#000000"
+           id="tspan270">rcv_vals()</tspan></tspan></text>
+    <text
+       xml:space="preserve"
+       transform="scale(0.26458333)"
+       id="text87"
+       style="font-size:9.33333px;line-height:1.4;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;writing-mode:lr-tb;direction:ltr;white-space:pre;shape-inside:url(#rect88);display:inline;fill:#ededed;fill-opacity:1;stroke:#021630;stroke-width:2.26772;stroke-miterlimit:1;stroke-dasharray:none;stroke-opacity:1" />
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,199.01679,143.8923)"
+       id="text95"
+       style="font-size:10.6667px;line-height:1.4;font-family:Arial;-inkscape-font-specification:Arial;text-align:start;writing-mode:lr-tb;direction:ltr;white-space:pre;shape-inside:url(#rect95);display:inline;fill:none;stroke-width:1.51181;stroke-miterlimit:1"
+       x="-1213.5087"
+       y="0"><tspan
+         x="51.968323"
+         y="89.099486"
+         id="tspan273"><tspan
+           style="text-align:end;text-anchor:end;fill:#000000"
+           id="tspan272">In these metthod we actually </tspan></tspan><tspan
+         x="72.11422"
+         y="104.03287"
+         id="tspan275"><tspan
+           style="text-align:end;text-anchor:end;fill:#000000"
+           id="tspan274">connect, disconnect and </tspan></tspan><tspan
+         x="45.457886"
+         y="118.96625"
+         id="tspan277"><tspan
+           style="text-align:end;text-anchor:end;fill:#000000"
+           id="tspan276">receive value from the device.</tspan></tspan></text>
+    <rect
+       style="fill:#e7e7e7;fill-opacity:1;stroke:#020230;stroke-width:0.4;stroke-miterlimit:1;stroke-opacity:1"
+       id="rect96"
+       width="67.088135"
+       height="27.068609"
+       x="179.97153"
+       y="238.45775" />
+    <path
+       style="fill:#fee3d0;fill-opacity:1;stroke:#020230;stroke-width:0.4;stroke-miterlimit:1;stroke-opacity:1"
+       d="m 179.91138,244.33068 h 66.93949"
+       id="path96" />
+    <path
+       style="fill:#fee3d0;fill-opacity:1;stroke:#020230;stroke-width:0.4;stroke-miterlimit:1;stroke-opacity:1"
+       d="m 180.01866,245.47024 h 66.93949"
+       id="path97" />
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,167.05665,218.18047)"
+       id="text98"
+       style="font-size:13.3333px;line-height:1.4;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;writing-mode:lr-tb;direction:ltr;white-space:pre;shape-inside:url(#rect100);display:inline;fill:none;stroke-width:1.51181;stroke-miterlimit:1"
+       x="-1162.5656"
+       y="0"><tspan
+         x="89.494985"
+         y="91.701432"
+         id="tspan279"><tspan
+           style="font-weight:bold;fill:#000000"
+           id="tspan278">Arduino_AHT10_Sensor</tspan></tspan></text>
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,170.21292,225.26272)"
+       id="text100"
+       style="font-size:13.3333px;line-height:1.4;font-family:Arial;-inkscape-font-specification:Arial;text-align:start;writing-mode:lr-tb;direction:ltr;white-space:pre;shape-inside:url(#rect101);display:inline;fill:none;stroke-width:1.51181;stroke-miterlimit:1"
+       x="-1336.3185"
+       y="0"><tspan
+         x="43.279297"
+         y="91.701432"
+         id="tspan282"><tspan
+           style="font-style:italic;font-weight:bold"
+           id="tspan280">Private methods redefined</tspan><tspan
+           style="fill:#000000"
+           id="tspan281">
+</tspan></tspan><tspan
+         x="43.279297"
+         y="110.36805"
+         id="tspan284"><tspan
+           style="fill:#000000"
+           id="tspan283">connect()
+</tspan></tspan><tspan
+         x="43.279297"
+         y="129.03467"
+         id="tspan286"><tspan
+           style="fill:#000000"
+           id="tspan285">disconnect()
+</tspan></tspan><tspan
+         x="43.279297"
+         y="147.70128"
+         id="tspan288"><tspan
+           style="fill:#000000"
+           id="tspan287">rcv_vals()</tspan></tspan></text>
+    <path
+       style="fill:#d0d0fe;fill-opacity:1;stroke:#888888;stroke-width:0.6;stroke-miterlimit:1;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Triangle)"
+       d="m 179.97794,242.43046 -8.98091,0"
+       id="path102"
+       sodipodi:nodetypes="cc" />
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,196.33743,232.69391)"
+       id="text102"
+       style="font-size:10.6667px;line-height:1.4;font-family:Arial;-inkscape-font-specification:Arial;text-align:start;writing-mode:lr-tb;direction:ltr;white-space:pre;shape-inside:url(#rect102);display:inline;fill:none;stroke-width:1.51181;stroke-miterlimit:1"
+       x="-1213.5087"
+       y="0"><tspan
+         x="51.968323"
+         y="89.099486"
+         id="tspan290"><tspan
+           style="text-align:end;text-anchor:end;fill:#000000"
+           id="tspan289">In these metthod we actually </tspan></tspan><tspan
+         x="72.11422"
+         y="104.03287"
+         id="tspan292"><tspan
+           style="text-align:end;text-anchor:end;fill:#000000"
+           id="tspan291">connect, disconnect and </tspan></tspan><tspan
+         x="45.457886"
+         y="118.96625"
+         id="tspan294"><tspan
+           style="text-align:end;text-anchor:end;fill:#000000"
+           id="tspan293">receive value from the device.</tspan></tspan></text>
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,91.194514,40.96853)"
+       id="text105"
+       style="font-size:13.3333px;line-height:1.4;font-family:Arial;-inkscape-font-specification:Arial;text-align:start;writing-mode:lr-tb;direction:ltr;white-space:pre;shape-inside:url(#rect105);display:inline;fill:none;stroke-width:1.51181;stroke-miterlimit:1"
+       x="-1336.3185"
+       y="0"><tspan
+         x="43.279297"
+         y="91.701432"
+         id="tspan296"><tspan
+           style="fill:#858585"
+           id="tspan295">classes/sensor.py</tspan></tspan></text>
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,91.194514,89.786249)"
+       id="text106"
+       style="font-size:13.3333px;line-height:1.4;font-family:Arial;-inkscape-font-specification:Arial;text-align:start;writing-mode:lr-tb;direction:ltr;white-space:pre;shape-inside:url(#rect106);display:inline;fill:none;stroke-width:1.51181;stroke-miterlimit:1"
+       x="-1336.3185"
+       y="0"><tspan
+         x="43.279297"
+         y="91.701432"
+         id="tspan298"><tspan
+           style="fill:#858585"
+           id="tspan297">classes/sensor.py</tspan></tspan></text>
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,91.194514,126.25926)"
+       id="text107"
+       style="font-size:13.3333px;line-height:1.4;font-family:Arial;-inkscape-font-specification:Arial;text-align:start;writing-mode:lr-tb;direction:ltr;white-space:pre;shape-inside:url(#rect107);display:inline;fill:none;stroke-width:1.51181;stroke-miterlimit:1"
+       x="-1336.3185"
+       y="0"><tspan
+         x="43.279297"
+         y="91.701432"
+         id="tspan300"><tspan
+           style="fill:#858585"
+           id="tspan299">classes/sensor.py</tspan></tspan></text>
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,-4.7575542,43.213023)"
+       id="text108"
+       style="font-size:13.3333px;line-height:1.4;font-family:Arial;-inkscape-font-specification:Arial;text-align:start;writing-mode:lr-tb;direction:ltr;white-space:pre;shape-inside:url(#rect108);display:inline;fill:none;stroke-width:1.51181;stroke-miterlimit:1"
+       x="-1336.3185"
+       y="0"><tspan
+         x="43.279297"
+         y="91.701432"
+         id="tspan302"><tspan
+           style="fill:#858585"
+           id="tspan301">classes/sensor.py</tspan></tspan></text>
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,-4.7575542,-21.596707)"
+       id="text109"
+       style="font-size:13.3333px;line-height:1.4;font-family:Arial;-inkscape-font-specification:Arial;text-align:start;writing-mode:lr-tb;direction:ltr;white-space:pre;display:inline;fill:none;stroke-width:1.51181;stroke-miterlimit:1;shape-inside:url(#rect109)"
+       x="-1336.3185"
+       y="0"><tspan
+         x="43.279297"
+         y="91.701432"
+         id="tspan304"><tspan
+           style="fill:#858585"
+           id="tspan303">utilities/database.py</tspan></tspan></text>
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,170.87401,75.477607)"
+       id="text110"
+       style="font-size:13.3333px;line-height:1.4;font-family:Arial;-inkscape-font-specification:Arial;text-align:start;writing-mode:lr-tb;direction:ltr;white-space:pre;shape-inside:url(#rect111);display:inline;fill:none;stroke-width:1.51181;stroke-miterlimit:1"
+       x="-1336.3185"
+       y="0"><tspan
+         x="43.279297"
+         y="91.701432"
+         id="tspan306"><tspan
+           style="fill:#858585"
+           id="tspan305">classes/arduino.py</tspan></tspan></text>
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,90.913958,213.23336)"
+       id="text111"
+       style="font-size:13.3333px;line-height:1.4;font-family:Arial;-inkscape-font-specification:Arial;text-align:start;writing-mode:lr-tb;direction:ltr;white-space:pre;shape-inside:url(#rect112);display:inline;fill:none;stroke-width:1.51181;stroke-miterlimit:1"
+       x="-1336.3185"
+       y="0"><tspan
+         x="43.279297"
+         y="91.701432"
+         id="tspan308"><tspan
+           style="fill:#858585"
+           id="tspan307">classes/arduino.py</tspan></tspan></text>
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,-5.0381102,192.75236)"
+       id="text112"
+       style="font-size:13.3333px;line-height:1.4;font-family:Arial;-inkscape-font-specification:Arial;text-align:start;writing-mode:lr-tb;direction:ltr;white-space:pre;shape-inside:url(#rect113);display:inline;fill:none;stroke-width:1.51181;stroke-miterlimit:1"
+       x="-1336.3185"
+       y="0"><tspan
+         x="43.279297"
+         y="91.701432"
+         id="tspan310"><tspan
+           style="fill:#858585"
+           id="tspan309">classes/arduino.py</tspan></tspan></text>
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,169.19065,212.67223)"
+       id="text113"
+       style="font-size:13.3333px;line-height:1.4;font-family:Arial;-inkscape-font-specification:Arial;text-align:start;writing-mode:lr-tb;direction:ltr;white-space:pre;shape-inside:url(#rect114);display:inline;fill:none;stroke-width:1.51181;stroke-miterlimit:1"
+       x="-1336.3185"
+       y="0"><tspan
+         x="43.279297"
+         y="91.701432"
+         id="tspan312"><tspan
+           style="fill:#858585"
+           id="tspan311">classes/arduino_AHT10.py</tspan></tspan></text>
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,171.43514,101.8504)"
+       id="text114"
+       style="font-size:13.3333px;line-height:1.4;font-family:Arial;-inkscape-font-specification:Arial;text-align:start;writing-mode:lr-tb;direction:ltr;white-space:pre;display:inline;fill:none;stroke-width:1.51181;stroke-miterlimit:1;shape-inside:url(#rect115)"
+       x="-1336.3185"
+       y="0"><tspan
+         x="43.279297"
+         y="91.701432"
+         id="tspan314"><tspan
+           style="fill:#858585"
+           id="tspan313">classes/phidget_tc.py</tspan></tspan></text>
+  </g>
+</svg>

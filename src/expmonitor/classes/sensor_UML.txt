@@ -1,0 +1,93 @@
+@startuml
+class AbstractSensor {
+    num_prec()
+    num_prec()
+    format_str()
+    format_str()
+    save_raw()
+    save_raw()
+    connect()
+    disconnect()
+    rcv_vals()
+    _show()
+    _apply_num_prec()
+    _apply_format()
+    _convert()
+    measure()
+    to_db()
+    filter_spikes()
+    _test_execution()
+        _db
+    descr
+    location
+    unit
+    category
+    sensor_type
+    conversion_fctn
+    num_prec
+    save_raw
+    format_str
+    value_limit
+    measurement_in_range
+    save_to_database
+    is_dummy
+    spike_filter
+    _num_prec
+    _num_prec
+    _format_str
+    _save_raw
+    _save_raw
+    raw_vals
+    measurement
+    measurement_in_range
+    measurement_in_range
+    measurement_in_range
+    measurement
+    measurement
+    __init__()
+}
+class Sensor {
+    connect()
+    disconnect()
+    rcv_vals()
+        __init__()
+}
+class SubSensor {
+    connect()
+    disconnect()
+    rcv_vals()
+    set_vals()
+        raw_vals
+    raw_vals
+    __init__()
+}
+class MultiSensor {
+    default_subsensor()
+    setup_subsensors()
+    update_subsensors()
+    connect()
+    disconnect()
+    rcv_vals()
+    measure()
+    to_db()
+    filter_spikes()
+        _db
+    number_of_sensors
+    successful_measurement
+    successful_measurement
+    successful_measurement
+    successful_measurement
+    __init__()
+}
+class DummyMultiSensor {
+    connect()
+    disconnect()
+    rcv_vals()
+        __init__()
+}
+ABC <|-- AbstractSensor
+AbstractSensor <|-- Sensor
+AbstractSensor <|-- SubSensor
+Sensor <|-- MultiSensor
+MultiSensor <|-- DummyMultiSensor
+@enduml
