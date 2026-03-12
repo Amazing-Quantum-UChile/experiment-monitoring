@@ -76,7 +76,7 @@ class Database:
         self.buffer.append(db_point)
         if len(self.buffer) >= self.buffer_size:
             log.debug("[Databse] Size of buffer is {}. Sending all points to the database.".format(len(self.buffer)))
-            self.client.write_points([json_dict])
+            self.client.write_points(self.buffer)
             self.buffer=[]
 
            
