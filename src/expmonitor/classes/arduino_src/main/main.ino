@@ -2,9 +2,10 @@
  * DEVICE: Arduino Mega 2560
  * DESCRIPTION: Code which return sensor data upon request
  Request "a": reads the 16 Analog channels and returns their value. Output: "A0,A1,A2,..., A15"
+ Request "b" reads the magnetic field from the HMC5883 magnetic field sensor.
  Request "h": reads temperature and humidity using the AHT10 sensor. Output: "temperature, humidity"
- Request "t": reads temperature from MAX31865 sensors (2 sensors). Returns "T1, T2"
  Request "p" reads temperature, humidity and pressure from the AHT20+BMP280 sensor. Output: "temperature, humidity, temperature, pressure" .
+ Request "t": reads temperature from MAX31865 sensors (2 sensors). Returns "T1, T2"
  */
 #include <avr/wdt.h> // Library for the Watchdog: this library reboot the arduino if a sensor block more than XX second (safety tiner)
 #include <Adafruit_Sensor.h>
@@ -39,7 +40,7 @@ Adafruit_MAX31865 temp_max[NUM_MAX] = {
   Adafruit_MAX31865(10, 51, 50, 52),
   Adafruit_MAX31865(9, 51, 50, 52)
 };
-float max_offsets[NUM_MAX] = {-6.5, 2}; //offset because each sensor was badly soldered and constructed
+float max_offsets[NUM_MAX] = {0, 0}; //offset because each sensor was badly soldered and constructed
 
 
 // HMC5883 magentic field sensor
@@ -115,6 +116,12 @@ void setup() {
 void loop() {
   // Check if the SBC has sent data to the Arduino
   if (Serial.available() > 0) {
+    /* * 1. ARM THE WATCHDOG
+     * We enable a 4-second window (WDTO_4S).
+     * Since your code typically takes < 2 seconds, 4s provides
+     * a safe margin before the hardware forces a reboot.
+     */
+    wdt_enable(WDTO_4S);
     // Read the incoming byte
     char incomingByte = Serial.read();
 
@@ -248,21 +255,21 @@ void loop() {
       }
     // Return the measurement
   if (measureSuccess) { 
-    // Conversion from micro-Tesla (uT) to Gauss (G)
-    float x_Gauss = event.magnetic.x / 100.0;
-    float y_Gauss = event.magnetic.y / 100.0;
-    float z_Gauss = event.magnetic.z / 100.0;
+    // Conversion from micro-Tesla (uT) to milliGauss (mG)
+    float x_mGauss = event.magnetic.x * 10.0;
+    float y_mGauss = event.magnetic.y * 10.0;
+    float z_mGauss = event.magnetic.z * 10.0;
 
-    Serial.print(x_Gauss, 4); // 4 decimals for precision in Gauss
+    Serial.print(x_mGauss); 
     Serial.print(",");
-    Serial.print(y_Gauss, 4);
+    Serial.print(y_mGauss);
     Serial.print(",");
-    Serial.println(z_Gauss, 4);
+    Serial.println(z_mGauss);
   }
   else {
     // if no signal is read, we send back nan
     Serial.println("nan,nan,nan");
   }
   }
-  }
+  wdt_disable();}
 }

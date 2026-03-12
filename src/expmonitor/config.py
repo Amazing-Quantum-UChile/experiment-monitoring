@@ -21,6 +21,8 @@ from expmonitor.utilities.database import Database
 from expmonitor.classes.arduino import Arduino
 from expmonitor.classes.arduino_adc import Arduino_ADC_Sensor
 from expmonitor.classes.arduino_AHT10 import Arduino_AHT10_Sensor
+from expmonitor.classes.arduino_AHT20_BMP280 import Arduino_AHT20_BMP280_Sensor
+from expmonitor.classes.arduino_QMC5883L import Arduino_QMC5883L_Sensor
 # Define interval [s] for data acquisition (+ execution time):
 acq_interv = 3
 
@@ -109,13 +111,91 @@ adc_subsensors_parameters = [
             }
         ]
 adc_sensor = Arduino_ADC_Sensor(
-    database=database,
     board= arduino_board,
+    database=database,
     sensor_parameters=adc_subsensors_parameters,
     descr="adc_arduino",
 )
-aht10 = Arduino_AHT10_Sensor( database=database,
-    board= arduino_board,)
+# aht10 = Arduino_AHT10_Sensor( database=database,
+#     board= arduino_board,)
+ahtbmp_sensor=Arduino_AHT20_BMP280_Sensor(
+    board= arduino_board,
+    database=database,
+    number_of_sensors=4, 
+        descr="aht20_bmp280_squeezing_table",
+        sensor_parameters=[{
+    "sensor_number": 0,
+    "descr": "temp_aht20_squeezing_table",
+    "unit": "°C",
+    "category": "temperature",
+    "sensor_type": "P-N junction temperature sensor",
+    "save_to_database": True,
+    "value_limit":(0,40),
+    },
+    {
+    "sensor_number": 1,
+    "descr": "humid_aht20_squeezing_table",
+    "unit": "%",
+    "category": "humidity",
+    "sensor_type": "capacitive polymer hygrometer",
+    "save_to_database": True,
+    "value_limit":(0,100),
+    },
+    {
+    "sensor_number": 3,
+    "descr": "temp_bmp280_squeezing_table",
+    "unit": "°C",
+    "category": "temperature",
+    "sensor_type": "Integrated CMOS capacitive/resistive temperature sensor",
+    "save_to_database": True,
+    "value_limit":(0,40),
+    },
+    {
+    "sensor_number": 4,
+    "descr": "pressure_bmp280_squeezing_table",
+    "unit": "hPa",
+    "category": "pressure",
+    "sensor_type": "Piezoresistive Barometric Pressure Sensor",
+    "save_to_database": True,
+    "value_limit":(300, 1300),
+    }]
+)
+
+### Magnetic field sensor
+mag_field_sensor = Arduino_QMC5883L_Sensor(
+    board= arduino_board,
+    database=database,
+    number_of_sensors=3, 
+    descr="qmc5883l",
+    sensor_parameters=[{
+    "sensor_number": 0,
+    "descr": "mag_x_rb_cell",
+    "unit": "mG",
+    "category": "magnetic field",
+    "sensor_type": "Anisotropic Magneto-Resistive sensor",
+    "conversion_fctn":lambda t: t,
+    "save_to_database": True,
+    },
+    {
+    "sensor_number": 1,
+    "descr": "mag_y_rb_cell",
+    "unit": "mG",
+    "category": "magnetic field",
+    "sensor_type": "Anisotropic Magneto-Resistive sensor",
+    "conversion_fctn":lambda t: t,
+    "save_to_database": True,
+    },
+    {
+    "sensor_number": 2,
+    "descr": "mag_z_rb_cell",
+    "unit": "mG",
+    "category": "magnetic field",
+    "sensor_type": "Anisotropic Magneto-Resistive sensor",
+    "conversion_fctn":lambda t: t,
+    "save_to_database": True,
+    },]
+)
+
 
 
 # # Setup serial devices:
