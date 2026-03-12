@@ -43,7 +43,7 @@ class Arduino_AHT20_BMP280_Sensor(ArduinoMultiSensor):
             "value_limit":(0,100),
             },
             {
-            "sensor_number": 3,
+            "sensor_number": 2,
             "descr": "temp_bmp280",
             "unit": "°C",
             "category": "temperature",
@@ -52,7 +52,7 @@ class Arduino_AHT20_BMP280_Sensor(ArduinoMultiSensor):
             "value_limit":(0,40),
             },
             {
-            "sensor_number": 4,
+            "sensor_number": 3,
             "descr": "pressure_bmp280",
             "unit": "hPa",
             "category": "pressure",

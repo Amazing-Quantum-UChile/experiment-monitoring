@@ -142,7 +142,7 @@ ahtbmp_sensor=Arduino_AHT20_BMP280_Sensor(
     "value_limit":(0,100),
     },
     {
-    "sensor_number": 3,
+    "sensor_number": 2,
     "descr": "temp_bmp280_squeezing_table",
     "unit": "°C",
     "category": "temperature",
@@ -151,7 +151,7 @@ ahtbmp_sensor=Arduino_AHT20_BMP280_Sensor(
     "value_limit":(0,40),
     },
     {
-    "sensor_number": 4,
+    "sensor_number": 3,
     "descr": "pressure_bmp280_squeezing_table",
     "unit": "hPa",
     "category": "pressure",
@@ -165,7 +165,7 @@ ahtbmp_sensor=Arduino_AHT20_BMP280_Sensor(
 mag_field_sensor = Arduino_QMC5883L_Sensor(
     board= arduino_board,
     database=database,
-    number_of_sensors=4, 
+    number_of_sensors=3, 
     descr="qmc5883l",
     sensor_parameters=[{
     "sensor_number": 0,
@@ -193,7 +193,7 @@ mag_field_sensor = Arduino_QMC5883L_Sensor(
     "sensor_type": "Anisotropic Magneto-Resistive sensor",
     "conversion_fctn":lambda t: t,
     "save_to_database": True,
-    },]
+    }]
 )
 
 

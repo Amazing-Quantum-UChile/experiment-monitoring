@@ -22,7 +22,7 @@ class Arduino_QMC5883L_Sensor(ArduinoMultiSensor):
     def __init__(self,
                 board, 
                 database,
-                number_of_sensors=4, 
+                number_of_sensors=3, 
                 descr="qmc5883l",
                 sensor_parameters=[{
                 "sensor_number": 0,
