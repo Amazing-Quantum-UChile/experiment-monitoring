@@ -165,7 +165,7 @@ ahtbmp_sensor=Arduino_AHT20_BMP280_Sensor(
 mag_field_sensor = Arduino_QMC5883L_Sensor(
     board= arduino_board,
     database=database,
-    number_of_sensors=3, 
+    number_of_sensors=4, 
     descr="qmc5883l",
     sensor_parameters=[{
     "sensor_number": 0,
