@@ -4,7 +4,6 @@
 Adafruit_AHTX0 aht; // Create the sensor object
 
 void setup() {
-  wdt_enable(WDTO_2S); // Enable the watchdog with an 2-second safety timer
   Serial.begin(9600);
   // Connect to AHT10 
   if (!aht.begin()) {
@@ -16,7 +15,6 @@ void setup() {
 }
 
 void loop() {
-wdt_reset(); // "Pet the dog" : tells the Arduino "everything is fine"
 
 sensors_event_t humidity, temp;
     // Read data. 

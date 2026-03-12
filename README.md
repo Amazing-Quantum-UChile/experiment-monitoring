@@ -32,8 +32,9 @@ Currently, the following sensors were developed:
     * Install the upload the Arduino code on your Arduino. See [`src/expmonitor/classes/arduino.md`](src/expmonitor/classes/arduino.md).
     * Config your setup in the [`src/expmonitor/config.py`](src/expmonitor/config.py).
   * If you want to add a new sensor and write your own interfaces:
-    * Write a subclass that extends the abstract `Sensor` class defined in [`src/expmonitor/classes/sensor.py`](src/expmonitor/classes/sensor.py) to drive your sensor/equipment and instantiate it in `src/expmonitor/config.py`. See examples in the `src/expmonitor/classes` folder. If your sensor performs more than one measurement, use the `MultiSensor` class.  
+    * Write a subclass that extends the abstract `Sensor` class defined in [`src/expmonitor/classes/sensor.py`](src/expmonitor/classes/sensor.py) to drive your sensor/equipment and instantiate it in `src/expmonitor/config.py`. See examples in the `src/expmonitor/classes` folder. If your sensor performs more than one measurement, use the `MultiSensor` class.  The UML diagram of the code classes is below.
   
+![Experiment Monitoring UML](docs/uml_diagram.png)
 
 ## Guide to the repository structure:
 
@@ -51,4 +52,3 @@ Currently, the following sensors were developed:
     </pre>
     Note that the argument after the script filepath sets the number of executions of the loop. The t and v flags enable timing and exception traceback to stdout.
 
-![Experiment Monitoring UML](docs/uml_diagram.png)

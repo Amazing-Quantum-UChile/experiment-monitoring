@@ -2,7 +2,7 @@
 
 // Pin configuration for Arduino Mega
 // Hardware SPI: CS = 10, MOSI = 51, MISO = 50, SCK = 52
-Adafruit_MAX31865 thermo = Adafruit_MAX31865(10, 51, 50, 52);
+Adafruit_MAX31865 thermo = Adafruit_MAX31865(9);
 
 // Reference resistor value (RREF)
 // For PT100 boards (marked '431'), use 430.0 Ohms
@@ -53,5 +53,5 @@ void loop() {
   }
   
   Serial.println("-----------------------");
-  delay(1000);
+  delay(2000);
 }
