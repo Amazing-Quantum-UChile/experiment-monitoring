@@ -14,11 +14,12 @@ the database. It is currently set up to use InfluxDB.
 # Standard library imports:
 from influxdb import InfluxDBClient
 from datetime import datetime
-
+import logging
+log = logging.getLogger("ExpMonitorLogger")
 
 class Database:
 
-    def __init__(self, port, name, is_dummy=False, max_logs=10):
+    def __init__(self, port, name, is_dummy=False, max_logs=10, use_buffer=True, buffer_size = 50):
         """Connects to the InfluxDB Database.
 
         Parameters
@@ -31,11 +32,18 @@ class Database:
             if True, instanciate a fake database for tests, by default False
         max_logs : int
             the maximum number of logs stored in the database. 
+        use_buffer: bool, optional
+            if true, we do not write on the database each time the method write is called. Instead, we write the data in. buffer of size buffer_size and write all points at once. This allowed to weight down the job of the SBC4.
+        buffer_size: int, optional 
+            the size of the buffer, sets the number of points we wait until to write onto the database.
         """
         self.port = port  # int
         self.name = name  # Make sure this is the same than the name of your influx database
         self.is_dummy = is_dummy
         self.max_logs = 10
+        self.use_buffer = use_buffer
+        self.buffer_size = buffer_size
+        self.buffer = []
         if not self.is_dummy:
             self.client = InfluxDBClient(
                 host="localhost", port=self.port, database=self.name
@@ -57,10 +65,21 @@ class Database:
         if save_raw:
             json_dict["fields"]["raw"] = raw
         if not self.is_dummy:
-            self.client.write_points([json_dict])
+            if not self.use_buffer:
+                self.client.write_points([json_dict])
+            else:
+                self.add_to_buffer(db_point=json_dict)
         else:
             print("[DummyDatabase] Writing {} into the database.".format(json_dict))
 
+    def add_to_buffer(self, db_point):
+        self.buffer.append(db_point)
+        if len(self.buffer) >= self.buffer_size:
+            log.debug("[Databse] Size of buffer is {}. Sending all points to the database.".format(len(self.buffer)))
+            self.client.write_points([json_dict])
+            self.buffer=[]
+
+           
     def store_log(self, msg, levelname, unique_id):
         """store a log in the database (max is self.max_logs=10 by)
 
