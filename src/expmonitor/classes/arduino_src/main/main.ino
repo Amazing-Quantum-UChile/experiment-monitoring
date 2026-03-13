@@ -96,9 +96,9 @@ void setup() {
     connection_success = false;
     message = message + "HMC5883L not found; ";
   } 
-  // Choose the Gain 1_3 | 1_9 | 8_1 (from the most sensitive to the less sensitive)
-  mag.setMagGain(HMC5883_MAGGAIN_1_3);  
-  // mag.setMagGain(HMC5883_MAGGAIN_8_1);
+  // Choose the Gain 1_3 or 8_1 (more or less sensitive)
+  // mag.setMagGain(HMC5883_MAGGAIN_1_3);  
+  mag.setMagGain(HMC5883_MAGGAIN_8_1);
   
 
   //////////////////////

@@ -14,9 +14,11 @@ void setup() {
   else {
     Serial.println("Connected to HMC5883L.");
     // Choose the Gain 1_3 | 1_9 | 8_1 (from the most sensitive to the less sensitive)
-    mag.setMagGain(HMC5883_MAGGAIN_1_3);  
-    // mag.setMagGain(HMC5883_MAGGAIN_8_1);
+    // mag.setMagGain(HMC5883_MAGGAIN_1_3);  
+    mag.setMagGain(HMC5883_MAGGAIN_8_1);
   }
+  Serial.begin(9600);
+  Wire.setClock(10000);
 }
 
 void loop() {

@@ -1,3 +1,14 @@
+# Arduino
+## Current code
+The code which runs on the Arduino is the [`main.ino`](src/expmonitor/classes/arduino_src/main/main.ino) which is given in the [`arduino_src`](src/expmonitor/classes/arduino_src/main/main.ino) folder. We connect to the Arduino using a Serial protocol on the USB0 port. The Arduino check the Serial port and if the user send one of the following requests, it returns a measurement (string of coma separated numbers) from one of its sensors. 
+
+* Request "a": reads the 16 Analog channels and returns their value. Output: "A0,A1,A2,..., A15"
+* Request "b" reads the magnetic field from the HMC5883 magnetic field sensor.
+* Request "h": reads temperature and humidity using the AHT10 sensor. Output: "temperature, humidity"
+* Request "p" reads temperature, humidity and pressure from the AHT20+BMP280 sensor. Output: "temperature, humidity, temperature, pressure" .
+* Request "t": reads temperature from MAX31865 sensors (2 sensors). Returns "T1, T2"
+ 
+
 ## Connecting sensors to the arduino
 
 
